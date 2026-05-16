@@ -1,0 +1,250 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fdf6ec;
+    font-family: 'Fredoka', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    height: 100vh; 
+    overflow: hidden; 
+    padding: 10px;
+}
+
+.contenedor-principal {
+    background: white;
+    width: 100%;
+    max-width: 1100px;
+    /* Reducimos la altura para eliminar el espacio vacío de abajo */
+    height: 75vh; 
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cabecera ajustada */
+.cabecera-dual {
+    display: flex;
+    padding: 10px 40px;
+    position: relative;
+    height: 90px;
+}
+
+.pildora-roja {
+    background-color: #e31e24;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 0 0 20px 20px;
+    font-weight: 600;
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 50px;
+}
+
+.banner-naranja-curvo {
+    background-color: #f48e28;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 80px;
+    width: 55%;
+    border-bottom-left-radius: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 60px;
+    color: white;
+}
+
+.banner-naranja-curvo h1 { font-size: 2rem; margin-left: 15px; }
+
+/* Grid con más aire entre líneas */
+.grid-diario {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 20px;
+    padding: 20px 60px;
+    flex-grow: 1;
+    align-items: flex-start;
+}
+
+.instruccion {
+    color: #000 !important;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.diario-contenido p {
+    font-size: 1.15rem;
+    /* Aumentamos la separación entre líneas de texto */
+    line-height: 1.6; 
+    margin-bottom: 15px;
+    font-weight: 500;
+    color: #222;
+}
+
+/* Imágenes ajustadas */
+.col-imagenes {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.bloque-relojes-horizontal {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.img-relojes {
+    width: 130px;
+    height: auto;
+}
+
+.textos-laterales p {
+    font-weight: 700;
+    font-size: 1rem;
+    margin: 22px 0;
+}
+
+.img-niñas {
+    width: 85%;
+    max-width: 300px;
+    height: auto;
+    margin-top: 10px;
+}
+
+/* Botones subidos */
+.controles {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px; /* Al reducir el contenedor, estos suben solos */
+}
+
+.btn-nav {
+    text-decoration: none;
+    padding: 10px 35px;
+    border-radius: 25px;
+    background: #e5e7eb;
+    color: #4b5563;
+    font-weight: 600;
+}
+
+.btn-rojo { background: #e31e24; color: white; }
+
+
+/* Cabecera idéntica a la foto */
+.cabecera-dual {
+    display: flex;
+    padding: 20px 40px;
+    position: relative;
+    height: 120px;
+}
+
+.pildora-roja {
+    background-color: #e31e24;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    z-index: 2;
+    height: fit-content;
+}
+/* --- ANIMACIÓN DE ENTRADA --- */
+
+/* Definimos la animación */
+@keyframes entradaFicha {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Empieza un poco más abajo */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Termina en su sitio */
+    }
+}
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+    .lectura-container {
+        max-height: none; /* En tablets/móviles dejamos que fluya normal */
+    }
+    
+    .contenido-lectura {
+        grid-template-columns: 1fr;
+    }
+    
+    .img-principal {
+        max-height: 400px; /* Tamaño controlado en móvil */
+    }
+}
+@media (max-width: 900px) {
+    .contenido-grid {
+        grid-template-columns: 1fr; /* Una columna en tablets/móviles */
+    }
+    
+    .ficha-container {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    .columna-fotos {
+        grid-template-columns: 1fr; /* En móviles muy pequeños, fotos una debajo de otra para que se vean bien */
+    }
+    
+    .titulo-ficha {
+        font-size: 1.8rem;
+    }
+}
+/* --- ANIMACIÓN DE ENTRADA (Copia esto) --- */
+
+/* 1. Definimos cómo se mueve la animación */
+@keyframes entradaFicha {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Empieza un poco más abajo y transparente */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Termina en su posición original y visible */
+    }
+}
+
+/* 2. Aplicamos la animación a los elementos que quieras */
+/* Se suele poner en el contenedor principal para que toda la ficha suba suavemente */
+.contenedor-principal, .ficha-container {
+    animation: entradaFicha 0.8s ease-out forwards;
+}
+
+/* Opcional: Si quieres el efecto de "cascada", aplica tiempos diferentes */
+.titulo-ficha, .cabecera-dual {
+    animation: entradaFicha 1s ease-out forwards;
+}
+
+.contenido-ejercicio, .contenido-grid {
+    animation: entradaFicha 1.2s ease-out forwards;
+}
+.footer-legal-fixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+    background: white;
+    border-top: 1px solid #f0f0f0;
+}
+
+.footer-legal-fixed p { 
+    font-size: 0.65rem; 
+    color: #aaa; 
+}

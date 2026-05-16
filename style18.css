@@ -1,0 +1,155 @@
+/* --- ESTILO BASE --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: #fdf6ec;
+    font-family: 'Fredoka', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.contenedor-principal {
+    background: white;
+    width: 98%;
+    max-width: 1400px;
+    height: 90vh; 
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* --- CABECERA --- */
+.cabecera-dual {
+    display: flex; align-items: center; padding: 15px 40px; position: relative; height: 80px; flex-shrink: 0;
+}
+.pildora-roja { background-color: #e31e24; color: white; padding: 8px 25px; border-radius: 30px; font-weight: 600; font-size: 1rem; z-index: 2; }
+.banner-naranja-curvo {
+    background-color: #f48e28; position: absolute; right: 0; top: 0; height: 100%; width: 45%; 
+    border-bottom-left-radius: 40px; display: flex; align-items: center; padding-left: 50px; color: white;
+}
+.banner-naranja-curvo h1 { font-size: clamp(1.5rem, 3.5vh, 2.2rem); }
+
+/* --- CONTENIDO --- */
+.contenido-actividades {
+    display: flex;
+    flex-grow: 1;
+    padding: 3vh 5vw;
+    gap: 4vw;
+    overflow: hidden;
+}
+
+.columna-ejercicios {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Estira el contenido verticalmente */
+    padding-bottom: 2vh;
+}
+
+/* Cuadro Leyenda */
+.cuadro-leyenda {
+    border: 3px solid #f48e28;
+    border-radius: 10px;
+    padding: 15px 25px;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 2vh;
+}
+
+.fila-leyenda {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.mancha {
+    width: 35px;
+    height: auto;
+}
+
+/* Estilos Ejercicios */
+.bloque-ejercicio { margin-bottom: 3vh; }
+.instruccion { font-weight: 700; font-size: 1.2rem; margin-bottom: 2vh; }
+.numero-rojo { color: #e31e24; margin-right: 5px; }
+
+/* Pautas de escritura */
+.pregunta-pauta {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    margin-bottom: 1.5vh;
+}
+
+.pregunta-pauta span, .pregunta-pauta-multiple span {
+    font-size: 1.05rem;
+    color: #333;
+    white-space: nowrap;
+}
+
+.pauta-azul {
+    flex-grow: 1;
+    border-bottom: 2px solid #cce0ff;
+    height: 30px;
+}
+
+.pregunta-pauta-multiple {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 2vh;
+}
+
+.lineas-pauta {
+    width: 100%;
+}
+
+/* Columna Imagen */
+.columna-imagen {
+    width: 45%;
+    display: flex;
+    align-items: center;
+}
+
+.img-pompeya {
+    width: 100%;
+    max-height: 60vh;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* --- NAVEGACIÓN --- */
+.controles { display: flex; justify-content: center; gap: 15px; padding: 15px 0; flex-shrink: 0; }
+.btn-nav { text-decoration: none; padding: 10px 40px; border-radius: 30px; background: #e5e7eb; color: #4b5563; font-weight: 600; transition: 0.3s; }
+.btn-rojo { background: #e31e24; color: white; }
+
+/* Ajustes Laptops */
+@media (max-height: 780px) {
+    .contenido-actividades { padding: 2vh 4vw; }
+    .instruccion { font-size: 1.1rem; margin-bottom: 1vh; }
+    .cuadro-leyenda { padding: 10px 20px; }
+    .pauta-azul { height: 25px; }
+}
+.footer-legal-fixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+    background: white;
+    border-top: 1px solid #f0f0f0;
+}
+
+.footer-legal-fixed p { 
+    font-size: 0.65rem; 
+    color: #aaa; 
+}

@@ -1,0 +1,174 @@
+/* --- CSS FICHA VACACIONES: VERSIÓN FINAL CORREGIDA --- */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fdf6ec;
+    font-family: 'Fredoka', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; 
+    padding: 15px 10px;
+}
+
+.ficha-container {
+    background: white;
+    width: 95%;
+    max-width: 1200px;
+    padding: 20px 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 0 8px white, 0 10px 30px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.titulo-ficha {
+    text-align: center;
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    color: #000;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+/* GRID PRINCIPAL */
+.contenido-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 25px;
+    align-items: start;
+}
+
+.columna-izquierda {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.etiqueta-actividad {
+    background-color: #fef08a;
+    padding: 6px 18px;
+    font-size: 1.3rem;
+    font-weight: 800;
+    border-radius: 5px;
+    width: fit-content;
+    clip-path: polygon(0% 0%, 100% 0%, 98% 50%, 100% 100%, 0% 100%, 2% 50%);
+}
+
+.bloque-pregunta p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.img-nino {
+    width: 150px;
+    height: auto;
+    align-self: center;
+}
+
+/* COLUMNA FOTOS */
+.columna-fotos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.foto-marco {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.foto-marco img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* PIE DE PÁGINA */
+.pie-ficha {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.discusion {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.discusion p {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* BANNER ROSA: AHORA SÍ, BAJO CONTROL */
+.banner-rosa-completo {
+    background-color: #ed4a93;
+    color: white;
+    padding: 8px 25px; /* Padding reducido */
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    height: 60px; /* Altura fija para que no crezca más */
+    overflow: hidden;
+}
+
+.banner-rosa-completo h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.icono-bandera {
+    height: 40px; /* Icono ajustado al banner */
+    width: auto;
+}
+
+/* NAVEGACIÓN */
+.navegacion-fija {
+    margin-top: 15px;
+    display: flex;
+    gap: 20px;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 10px 35px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.btn-gris { background: #e5e7eb; color: #4b5563; }
+.btn-rojo { background: #d91a1d; color: white; }
+
+/* Ajustes para portátiles con poca resolución vertical */
+@media (max-height: 750px) {
+    .ficha-container { padding: 12px 30px; gap: 8px; }
+    .img-nino { width: 120px; }
+    .banner-rosa-completo { height: 50px; padding: 5px 20px; }
+    .banner-rosa-completo h2 { font-size: 1.1rem; }
+}
+.footer-legal-fixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+    background: white;
+    border-top: 1px solid #f0f0f0;
+}
+
+.footer-legal-fixed p { 
+    font-size: 0.65rem; 
+    color: #aaa; 
+}

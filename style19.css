@@ -1,0 +1,138 @@
+/* --- ESTILO BASE --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: #fdf6ec;
+    font-family: 'Fredoka', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.contenedor-final {
+    background: white;
+    width: 98%;
+    max-width: 1400px;
+    height: 85vh; 
+    border-radius: 25px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+/* --- DECORACIÓN DE FONDO --- */
+.suelo-amarillo {
+    position: absolute;
+    bottom: -10%;
+    width: 120%;
+    height: 50%;
+    background-color: #ffd147; /* Amarillo vibrante de la imagen */
+    border-radius: 50% 50% 0 0;
+    z-index: 1;
+}
+
+/* --- CONTENIDO --- */
+.contenido-cierre {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5vh;
+    width: 80%;
+}
+
+/* Nota de papel con bordes dentados simulados */
+.nota-mensaje {
+    background-color: #ffe899;
+    padding: 40px;
+    border-radius: 5px;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    max-width: 800px;
+    /* Efecto de borde dentado lateral */
+    mask-image: linear-gradient(to right, transparent 5px, black 5px, black calc(100% - 5px), transparent calc(100% - 5px)),
+                radial-gradient(circle at 5px 10px, black 5px, transparent 5px);
+    mask-size: 100% 100%, 10px 20px;
+    mask-repeat: no-repeat, repeat-y;
+}
+
+.nota-mensaje p {
+    font-size: clamp(1.2rem, 3vh, 1.8rem);
+    line-height: 1.6;
+    color: #222;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Personaje */
+.personaje-final {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.img-final {
+    max-height: 40vh;
+    width: auto;
+    filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));
+    animation: saltito 2s infinite ease-in-out;
+}
+
+/* --- ANIMACIÓN --- */
+@keyframes saltito {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* --- NAVEGACIÓN --- */
+.controles { 
+    display: flex; 
+    justify-content: center; 
+    gap: 15px; 
+    padding: 20px 0; 
+    z-index: 10;
+}
+
+.btn-nav {
+    text-decoration: none; 
+    padding: 12px 35px; 
+    border-radius: 30px; 
+    background: #e5e7eb; 
+    color: #4b5563; 
+    font-weight: 600; 
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-rojo { background: #e31e24; color: white; }
+.btn-nav:hover { transform: scale(1.05); filter: brightness(1.1); }
+
+/* Ajuste para laptops */
+@media (max-height: 750px) {
+    .nota-mensaje { padding: 25px; }
+    .img-final { max-height: 30vh; }
+    .suelo-amarillo { height: 40%; }
+}
+.footer-legal-fixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+    background: white;
+    border-top: 1px solid #f0f0f0;
+}
+
+.footer-legal-fixed p { 
+    font-size: 0.65rem; 
+    color: #aaa; 
+}

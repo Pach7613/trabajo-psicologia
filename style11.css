@@ -1,0 +1,179 @@
+/* --- CSS LECTURA POEMA: ADAPTABLE A PORTÁTIL Y MONITOR --- */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: #fdf6ec;
+    font-family: 'Fredoka', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Cambiado a min-height */
+    padding: 10px;
+    overflow: hidden;
+}
+
+.contenedor-principal {
+    background: white;
+    width: 98%;
+    max-width: 1400px;
+    /* Usamos una altura que se adapte al alto de la pantalla disponible */
+    height: 90vh; 
+    border-radius: 25px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    animation: entradaFicha 0.8s ease-out forwards;
+}
+
+/* 1. CABECERA DUAL: BANNER MÁS FINO */
+.cabecera-dual {
+    display: flex;
+    align-items: center; /* Alineado al centro para ahorrar altura */
+    padding: 15px 40px; /* Reducido */
+    position: relative;
+    height: 80px; /* Altura controlada */
+}
+
+.pildora-roja {                                                         
+    background-color: #e31e24;
+    color: white;
+    padding: 8px 25px; /* Más estrecha */
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    z-index: 2;
+}
+
+
+.banner-naranja-curvo {
+    background-color: #f48e28; 
+    position: absolute; 
+    right: 0; 
+    top: 0;
+    height: 100%; 
+    width: 50%; 
+    border-bottom-left-radius: 40px;
+    display: flex; 
+    align-items: center; 
+    padding-left: 50px; 
+    color: white;
+}
+
+.banner-naranja-curvo h1 {
+    font-size: clamp(1.5rem, 3.5vh, 2.2rem);
+    letter-spacing: 1px;
+}
+
+.icono-lectura {
+    width: clamp(30px, 5vh, 45px);
+    margin-right: 15px;
+}
+
+/* 2. CUERPO: MODO RESPONSIVE */
+.contenido-lectura {
+    display: flex;
+    padding: 2vh 5vw;
+    flex-grow: 1;
+    gap: 5vw;
+    align-items: center;
+    overflow-y: hidden; /* Evita el scroll interno si el contenido cabe */
+}
+
+.zona-poema { 
+    width: 45%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.instruccion { 
+    font-weight: 700; 
+    font-size: clamp(1.1rem, 2.5vh, 1.4rem); 
+    margin-bottom: 2vh; 
+}
+
+.poema {
+    padding-left: 20px;
+    border-left: 3px solid #fdf6ec; /* Detalle decorativo */
+}
+
+.titulo-poema {
+    font-size: clamp(1.2rem, 2.8vh, 1.6rem);
+    font-weight: 700;
+    margin-bottom: 1.5vh;
+    color: #111;
+}
+
+.estrofa {
+    margin-bottom: 2vh;
+    font-size: clamp(1rem, 2.2vh, 1.25rem);
+    line-height: 1.4;
+    color: #333;
+}
+
+/* 3. IMAGEN: TAMAÑO INTELIGENTE */
+.zona-ilustracion {
+    width: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-luna {
+    width: 100%; 
+    /* La imagen nunca será más alta que el 65% de la pantalla */
+    max-height: 65vh; 
+    object-fit: contain;
+}
+
+/* 4. BOTONES */
+.controles { 
+    display: flex; 
+    justify-content: center;
+    gap: 15px; 
+    padding: 15px 0; 
+}
+
+.btn-nav {
+    text-decoration: none; 
+    padding: 10px 40px; 
+    border-radius: 30px;
+    background: #e5e7eb; 
+    color: #4b5563; 
+    font-weight: 600;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.btn-rojo { background: #e31e24; color: white; }
+.btn-nav:hover { transform: scale(1.05); }
+
+/* --- ANIMACIONES Y RESPONSIVE --- */
+@keyframes entradaFicha {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Si la pantalla es muy bajita (como un portátil pequeño) */
+@media (max-height: 700px) {
+    .estrofa { margin-bottom: 1vh; }
+    .instruccion { margin-bottom: 1vh; }
+    .cabecera-dual { height: 60px; }
+}
+.footer-legal-fixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+    background: white;
+    border-top: 1px solid #f0f0f0;
+}
+
+.footer-legal-fixed p { 
+    font-size: 0.65rem; 
+    color: #aaa; 
+}

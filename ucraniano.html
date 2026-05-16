@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Головна сторінка в стилі Santillana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">  <link rel="stylesheet" href="./comun.css">
+</head>
+<body>
+
+    <header class="main-header">
+    <div class="top-logos">
+        <a href="./index.html">
+            <img src="./imágenes/logo-santillana.png" alt="SANTILLANA" class="logo-santillana">
+        </a>
+        
+        <!-- Logo Miraflores a su web externa -->
+        <a href="https://ceipmiraflores.es/web/" target="_blank">
+            <img src="./imágenes/logo cole.png" alt="Miraflores" class="logo-school">
+        </a>
+    </div>
+
+    <div class="language-selector">
+    <button id="lang-btn">Мова</button>
+    <ul id="lang-menu">
+        <li><a href="./index.html">Español</a></li>
+        <li><a href="./ingles.html">English</a></li>
+        <li><a href="./frances.html">Français</a></li>
+        <li><a href="./marroqui.html">Dariya</a></li>
+        <li><a href="./portugues.html">Português</a></li>
+        <li><a href="./ucraniano.html">Українська</a></li>
+    </ul>
+</div>
+
+    <div class="hero-content">
+        <p class="subtitle">Lengua Castellana 2º primaria</p>
+        <h1 class="main-title">Іспанська мова</h1>
+        <p class="course-detail">2 клас початкової школи</p>
+    </div>
+
+    <!-- Contenedor único para los niños y el arco -->
+    <div class="arc-container">
+        <div class="kids-illustration">
+            <img src="./imágenes/image.png" alt="Наші фотографії">
+        </div>
+        <div class="white-arc"></div>
+    </div>
+</header>
+
+    <main class="content-area">
+        <div class="bottom-logos">
+            <img src="./imágenes/logo uma.jpg" alt="UMA">
+            <img src="./imágenes/logo profequerones.png" alt="Profe Bueno">
+            <img src="./imágenes/logo facultad ed.png" alt="Facultad">
+        </div>
+        <a href="./ucraniano/u1.html" class="start-btn">📖 Увійти</a>
+    </main>
+    <script>
+    const langBtn = document.getElementById('lang-btn');
+    const langSelector = document.querySelector('.language-selector');
+
+    // Función para abrir/cerrar
+    langBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Evita que el click se propague al documento
+        langSelector.classList.toggle('open');
+    });
+
+    // Cerrar si se hace click en cualquier otro sitio de la pantalla
+    document.addEventListener('click', (e) => {
+        if (!langSelector.contains(e.target)) {
+            langSelector.classList.remove('open');
+        }
+    });
+</script>
+</body>
+</html>

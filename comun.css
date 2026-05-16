@@ -1,0 +1,46 @@
+@media (max-width: 1400px) {
+    /* Permitir que la página respire y saque scroll si hace falta */
+    body, html {
+        overflow-y: auto !important;
+        height: auto !important;
+    }
+
+    /* Evitar que el arco tape el texto en pantallas pequeñas */
+    .hero-content {
+        margin-top: 20px !important;
+        padding: 0 20px;
+    }
+
+    .main-title {
+        font-size: clamp(2rem, 6vw, 3rem) !important;
+    }
+
+    /* Bajamos el arco para que no se coma los títulos */
+    .white-arc {
+        height: 50vh !important;
+        bottom: -20vh !important;
+    }
+    
+    .kids-illustration {
+        bottom: 10vh !important;
+    }
+
+    /* Los logos de abajo suelen dar problemas, los hacemos más pequeños */
+    .bottom-logos {
+        gap: 20px !important;
+        padding: 20px !important;
+    }
+
+    .bottom-logos img {
+        height: 35px !important;
+    }
+
+    /* El botón Entrar lo movemos para que no tape los logos */
+    .start-btn {
+        position: relative !important;
+        right: auto !important;
+        bottom: auto !important;
+        display: inline-block;
+        margin: 20px 0;
+    }
+}

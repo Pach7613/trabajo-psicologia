@@ -1,0 +1,219 @@
+/* Reutilizamos la base de la página 9 */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: #fdf6ec;
+    font-family: 'Fredoka', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.contenedor-principal {
+    background: white;
+    width: 95%;
+    max-width: 1200px;
+    height: 85vh;
+    border-radius: 25px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* Cabecera idéntica */
+.cabecera-dual { height: 90px; position: relative; }
+.pildora-roja {
+    background-color: #e31e24; color: white; padding: 10px 25px;
+    border-radius: 0 0 20px 20px; font-weight: 600; position: absolute; left: 50px;
+}
+.banner-naranja-curvo {
+    background-color: #f48e28; position: absolute; right: 0; top: 0;
+    height: 80px; width: 55%; border-bottom-left-radius: 50px;
+    display: flex; align-items: center; padding-left: 40px; color: white;
+}
+
+/* Cuerpo central */
+.contenido-ejercicio {
+    display: flex;
+    padding: 30px 50px;
+    flex-grow: 1;
+    gap: 40px; /* Más espacio entre texto e imágenes */
+    position: relative;
+}
+
+.zona-escritura { 
+    width: 45%; 
+    z-index: 5; /* Para que el texto quede por encima del niño si se solapan */
+}
+.instruccion { font-weight: 700; font-size: 1.1rem; margin-bottom: 20px; }
+.numero-rojo { color: #e31e24; }
+
+/* Diálogos con avatares */
+.linea-dialogo { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 15px; }
+.mini-avatar { width: 40px; height: auto; }
+.pauta-doble { flex-grow: 1; }
+.linea-respuesta { 
+    height: 25px; border-bottom: 1px solid #a5b4fc; margin-bottom: 5px; 
+}
+
+/* Zona de imágenes derecha */
+.zona-imagenes {
+    width: 55%;
+    position: relative;
+    display: flex;
+    justify-content: flex-end; /* Empuja el cuadro azul a la derecha */
+    align-items: center;
+}
+
+.cuadro-escena-azul {
+    width: 90%; /* Ajustado para que no ocupe todo el ancho */
+    height: 300px;
+    border-radius: 30px;
+    overflow: hidden;
+    border: 12px solid #d4ecec; /* Borde más grueso como en la foto */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.img-escena { width: 100%; height: 100%; object-fit: cover; }
+
+.img-niño-de-pie {
+    position: absolute;
+    bottom: -20px;
+    left: -40px;
+    height: 280px;
+    width: auto;
+}
+
+/* Decoración inferior de la página 9 */
+.decoracion-inferior {
+    width: 100%;
+    height: 140px;
+    background-image: url('../imágenes/bloque.png'); /* Cuadrícula */
+    background-size: cover;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 40px 10px 40px;
+    margin-top: auto;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.img-niñas-base { width: 200px; height: auto; }
+.img-relojes-base { width: 80px; height: auto; margin-bottom: 10px; }
+/* Botones */
+.controles { display: flex; gap: 15px; margin-top: 15px; }
+.btn-nav {
+    text-decoration: none; padding: 10px 35px; border-radius: 25px;
+    background: #e5e7eb; color: #4b5563; font-weight: 600;
+}
+.btn-rojo { background: #e31e24; color: white; }
+
+/* Cabecera idéntica a la foto */
+.cabecera-dual {
+    display: flex;
+    padding: 20px 40px;
+    position: relative;
+    height: 120px;
+}
+
+.pildora-roja {
+    background-color: #e31e24;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    z-index: 2;
+    height: fit-content;
+}
+/* --- ANIMACIÓN DE ENTRADA --- */
+
+/* Definimos la animación */
+@keyframes entradaFicha {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Empieza un poco más abajo */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Termina en su sitio */
+    }
+}
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+    .lectura-container {
+        max-height: none; /* En tablets/móviles dejamos que fluya normal */
+    }
+    
+    .contenido-lectura {
+        grid-template-columns: 1fr;
+    }
+    
+    .img-principal {
+        max-height: 400px; /* Tamaño controlado en móvil */
+    }
+}
+@media (max-width: 900px) {
+    .contenido-grid {
+        grid-template-columns: 1fr; /* Una columna en tablets/móviles */
+    }
+    
+    .ficha-container {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    .columna-fotos {
+        grid-template-columns: 1fr; /* En móviles muy pequeños, fotos una debajo de otra para que se vean bien */
+    }
+    
+    .titulo-ficha {
+        font-size: 1.8rem;
+    }
+}
+/* --- ANIMACIÓN DE ENTRADA (Copia esto) --- */
+
+/* 1. Definimos cómo se mueve la animación */
+@keyframes entradaFicha {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Empieza un poco más abajo y transparente */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Termina en su posición original y visible */
+    }
+}
+
+/* 2. Aplicamos la animación a los elementos que quieras */
+/* Se suele poner en el contenedor principal para que toda la ficha suba suavemente */
+.contenedor-principal, .ficha-container {
+    animation: entradaFicha 0.8s ease-out forwards;
+}
+
+/* Opcional: Si quieres el efecto de "cascada", aplica tiempos diferentes */
+.titulo-ficha, .cabecera-dual {
+    animation: entradaFicha 1s ease-out forwards;
+}
+
+.contenido-ejercicio, .contenido-grid {
+    animation: entradaFicha 1.2s ease-out forwards;
+}
+.footer-legal-fixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+    background: white;
+    border-top: 1px solid #f0f0f0;
+}
+
+.footer-legal-fixed p { 
+    font-size: 0.65rem; 
+    color: #aaa; 
+}

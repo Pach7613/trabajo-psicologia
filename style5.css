@@ -1,0 +1,186 @@
+/* --- CSS CORREGIDO: SIN SCROLL PARA PORTÁTIL --- */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f8f1e7;
+    font-family: 'Fredoka', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Usamos dvh para mayor precisión en navegadores modernos */
+    min-height: 100vh; 
+    padding: 10px;
+    overflow: hidden; /* Evita scroll en el body */
+}
+
+/* Animación principal */
+@keyframes entradaFicha {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.actividades-container {
+    background: white;
+    width: 95%;
+    max-width: 1150px;
+    /* Reducimos padding drásticamente para ganar espacio vertical */
+    padding: 20px 40px; 
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    animation: entradaFicha 0.8s ease-out forwards;
+    /* Altura máxima dinámica para que nunca genere scroll */
+    max-height: 85vh; 
+    display: flex;
+    align-items: center;
+}
+
+.grid-actividades {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 30px;
+    align-items: center;
+    width: 100%;
+}
+
+.info-seccion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Cabecera */
+.cabecera-lineal {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px; /* Reducido de 25px */
+}
+
+.sol-icono {
+    width: 35px; /* Reducido de 45px */
+    height: auto;
+}
+
+.titulo-naranja {
+    color: #f97316;
+    /* Fuente dinámica: se ajusta al ancho de pantalla */
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem); 
+    font-weight: 700;
+}
+
+/* Actividades */
+.lista-actividades {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Reducido de 25px */
+    margin-bottom: 15px;
+}
+
+.bloque-actividad {
+    display: flex;
+    align-items: center; /* Mejor alineado al centro */
+    gap: 12px;
+}
+
+.icono-mini {
+    width: 40px; /* Reducido de 50px */
+    height: auto;
+    flex-shrink: 0;
+}
+
+.contenido-texto p {
+    font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+    line-height: 1.3;
+    color: #374151;
+}
+
+/* Imagen Niñas */
+.contenedor-decorativo-grande {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.img-decorativa-grande {
+    max-width: 300px; /* Reducido de 450px para no empujar el layout */
+    width: 100%;
+    height: auto;
+}
+
+/* Imagen Árbol Derecha */
+.ilustracion-final-seccion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-final-ajustada {
+    width: 100%;
+    /* Muy importante: limita la altura de la imagen a la del contenedor */
+    max-height: 65vh; 
+    object-fit: contain;
+}
+
+/* Botones Inferiores */
+.controles-fijos {
+    margin-top: 15px;
+    display: flex;
+    gap: 15px;
+}
+
+.btn-nav {
+    text-decoration: none;
+    padding: 10px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: 0.2s;
+    font-size: 0.9rem;
+}
+
+.btn-volver { background: #e5e7eb; color: #4b5563; }
+.btn-inicio { background: #d91a1d; color: white; }
+.btn-nav:hover { transform: scale(1.05); }
+
+/* --- RESPONSIVE --- */
+
+@media (max-width: 900px) {
+    .actividades-container {
+        max-height: none; 
+        padding: 20px;
+        margin: 20px 0;
+    }
+    .grid-actividades {
+        grid-template-columns: 1fr;
+    }
+    body {
+        overflow-y: auto; /* En móviles sí permitimos scroll */
+    }
+}
+
+/* Ajuste extremo para portátiles con pantallas muy pequeñas (bajas) */
+@media (max-height: 700px) {
+    .actividades-container { padding: 10px 30px; }
+    .img-decorativa-grande { max-width: 220px; }
+    .lista-actividades { gap: 8px; }
+    .titulo-naranja { font-size: 1.5rem; }
+}
+.footer-legal-fixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+    background: white;
+    border-top: 1px solid #f0f0f0;
+}
+
+.footer-legal-fixed p { 
+    font-size: 0.65rem; 
+    color: #aaa; 
+}

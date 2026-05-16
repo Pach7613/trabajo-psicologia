@@ -1,0 +1,137 @@
+/* --- ESTILO BASE --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: #fdf6ec;
+    font-family: 'Fredoka', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.contenedor-principal {
+    background: white;
+    width: 98%;
+    max-width: 1400px;
+    height: 90vh; 
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* --- CABECERA --- */
+.cabecera-dual {
+    display: flex; align-items: center; padding: 15px 40px; position: relative; height: 80px; flex-shrink: 0;
+}
+.pildora-roja { background-color: #e31e24; color: white; padding: 8px 25px; border-radius: 30px; font-weight: 600; }
+.banner-naranja-curvo {
+    background-color: #f48e28; position: absolute; right: 0; top: 0; height: 100%; width: 45%; 
+    border-bottom-left-radius: 40px; display: flex; align-items: center; padding-left: 50px; color: white;
+}
+.banner-naranja-curvo h1 { font-size: clamp(1.5rem, 3.5vh, 2.2rem); }
+
+/* --- CONTENIDO (Ajustado para llenar el espacio) --- */
+.contenido-actividades {
+    display: flex; 
+    padding: 4vh 5vw; /* Más relleno vertical */
+    flex-grow: 1; 
+    gap: 5vw; 
+    overflow: hidden;
+}
+
+.columna { 
+    width: 50%; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; /* Empuja los ejercicios hacia los extremos para llenar el hueco */
+    padding-bottom: 2vh;
+}
+
+.bloque-ejercicio {
+    margin-bottom: 2vh;
+}
+
+.instruccion { font-weight: 700; font-size: clamp(1.1rem, 2.2vh, 1.3rem); margin-bottom: 2vh; }
+.numero-rojo { color: #e31e24; margin-right: 5px; }
+
+/* V/F y Checkboxes */
+.lista-vf { display: flex; flex-direction: column; gap: 15px; margin-bottom: 1vh; }
+.item-vf { display: flex; align-items: flex-start; gap: 15px; font-size: clamp(0.9rem, 1.8vh, 1.1rem); line-height: 1.4; }
+.cuadrito { 
+    width: 24px; height: 24px; border: 2px solid #f48e28; border-radius: 4px; flex-shrink: 0; margin-top: 2px;
+}
+
+/* Escritura Mimo */
+.escritura-mimo { display: flex; align-items: flex-end; gap: 10px; margin-top: 2vh; }
+.label-fijo { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; white-space: nowrap; }
+.lineas-mimo { flex-grow: 1; }
+.pauta-azul { border-bottom: 2px solid #cce0ff; height: 40px; margin-bottom: 10px; }
+
+/* GRID DE UNIR (Más grande para ocupar espacio) */
+.grid-unir {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 3vh;
+}
+.fotos-unir { display: flex; flex-direction: column; gap: 20px; }
+.fotos-unir img { 
+    width: 100%; 
+    border-radius: 12px; 
+    object-fit: cover; 
+    height: 120px; /* Fotos más altas */
+    border: 1px solid #eee; 
+}
+
+.etiquetas-centro { display: flex; flex-direction: column; gap: 15px; }
+.tag-unir {
+    border: 1px solid #f48e28; padding: 10px 5px; border-radius: 8px; text-align: center;
+    font-size: 0.9rem; font-weight: 600; background: white;
+}
+
+/* SECCIÓN MÍMICA */
+.seccion-mimica { 
+    border-top: 1px dashed #ccc; 
+    padding-top: 3vh;
+}
+.txt-mimica { font-weight: 600; font-size: 1rem; margin-bottom: 2.5vh; }
+.contenedor-tags-mimica { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 3vh; }
+.tag-mimica {
+    border: 1px solid #f48e28; padding: 12px 20px; border-radius: 8px;
+    font-weight: 600; font-size: 0.95rem;
+}
+.pregunta-final { font-weight: 600; font-size: 1rem; color: #444; line-height: 1.4; }
+
+/* --- NAVEGACIÓN --- */
+.controles { display: flex; justify-content: center; gap: 15px; padding: 15px 0; flex-shrink: 0; }
+.btn-nav { text-decoration: none; padding: 10px 40px; border-radius: 30px; background: #e5e7eb; color: #4b5563; font-weight: 600; transition: 0.3s; }
+.btn-rojo { background: #e31e24; color: white; }
+
+/* Ajustes Portátiles */
+@media (max-height: 780px) {
+    .contenido-actividades { padding: 2vh 4vw; }
+    .columna { gap: 1vh; }
+    .fotos-unir img { height: 90px; }
+    .pauta-azul { height: 32px; }
+    .tag-mimica { padding: 8px 15px; }
+}
+.footer-legal-fixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+    background: white;
+    border-top: 1px solid #f0f0f0;
+}
+
+.footer-legal-fixed p { 
+    font-size: 0.65rem; 
+    color: #aaa; 
+}

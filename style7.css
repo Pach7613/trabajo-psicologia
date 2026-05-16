@@ -1,0 +1,174 @@
+/* --- CSS VOCABULARIO: BANNER FINO Y TEXTO AMPLIO --- */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fdf6ec;
+    font-family: 'Fredoka', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.contenedor-principal {
+    background: white;
+    width: 98%; /* Más ancho para el proyector */
+    max-width: 1400px; 
+    height: 85vh; 
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: entradaFicha 0.8s ease-out forwards;
+}
+
+/* 1. CABECERA CON BANNER MÁS FINO */
+.cabecera-dual {
+    display: flex;
+    align-items: center; /* Alineado al centro para ahorrar altura */
+    padding: 15px 40px; /* Reducido */
+    position: relative;
+    height: 80px; /* Altura controlada */
+}
+
+.pildora-roja {
+    background-color: #e31e24;
+    color: white;
+    padding: 8px 25px; /* Más estrecha */
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    z-index: 2;
+}
+
+.banner-naranja-curvo {
+    background-color: #f48e28;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%; /* Ahora es más fino porque depende de .cabecera-dual */
+    width: 55%;
+    border-bottom-left-radius: 40px;
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+    color: white;
+}
+
+.banner-naranja-curvo h1 { 
+    font-size: clamp(1.3rem, 3vh, 2rem); 
+    margin-left: 15px; 
+}
+
+.icono-sol { 
+    width: clamp(25px, 5vh, 40px); 
+}
+
+/* 2. CONTENIDO MÁS ARRIBA Y ESPACIADO */
+.seccion-vocabulario { 
+    padding: 20px 6vw; 
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alineado arriba */
+    margin-top: 10px;
+}
+
+.naranja-texto { 
+    color: #f48e28; 
+    font-size: clamp(1.6rem, 3.5vh, 2.2rem); /* Título más grande */
+    margin-bottom: 10px; 
+}
+
+.instruccion { 
+    margin-bottom: clamp(15px, 3vh, 30px); 
+    font-size: clamp(1.1rem, 2.3vh, 1.4rem); /* Instrucción más legible */
+    color: #333; 
+    line-height: 1.3; 
+}
+
+/* 3. EJERCICIOS CON TEXTO MÁS GRANDE */
+.lista-ejercicios { 
+    display: flex; 
+    flex-direction: column; 
+    gap: clamp(15px, 3vh, 35px); /* Más separación entre filas */
+}
+
+.fila-vocabulario { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+}
+
+.flecha-canva {
+    background-color: #f48e28;
+    padding: 2px;
+    width: 62%;
+    clip-path: polygon(0% 0%, 93% 0%, 100% 50%, 93% 100%, 0% 100%);
+}
+
+.flecha-canva span {
+    background-color: white;
+    display: block;
+    padding: clamp(10px, 2vh, 18px) 25px; 
+    clip-path: polygon(0% 0%, 92.5% 0%, 99.5% 50%, 92.5% 100%, 0% 100%);
+    font-size: clamp(1.1rem, 2.2vh, 1.4rem); /* Frases más grandes */
+}
+
+.opciones {
+    width: 33%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.palabra {
+    font-size: clamp(1.1rem, 2.4vh, 1.5rem); /* Opciones mucho más grandes */
+    color: #444;
+    font-weight: 700; /* Negrita para que se vea mejor en el proyector */
+}
+
+/* BOTONES */
+.controles { 
+    display: flex; 
+    gap: 15px; 
+    margin: 15px 0; 
+}
+
+.btn-nav {
+    text-decoration: none;
+    padding: 10px 35px;
+    border-radius: 25px;
+    background: #e5e7eb;
+    color: #4b5563;
+    font-weight: 600;
+}
+
+.btn-rojo { background: #e31e24; color: white; }
+
+@keyframes entradaFicha {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.footer-legal-fixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+    background: white;
+    border-top: 1px solid #f0f0f0;
+}
+
+.footer-legal-fixed p { 
+    font-size: 0.65rem; 
+    color: #aaa; 
+}

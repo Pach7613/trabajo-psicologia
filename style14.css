@@ -1,0 +1,193 @@
+/* --- ESTILO GENERAL (COHERENTE) --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: #fdf6ec;
+    font-family: 'Fredoka', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.contenedor-principal {
+    background: white;
+    width: 98%;
+    max-width: 1400px;
+    height: 88vh; 
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    animation: entradaFicha 0.8s ease-out forwards;
+}
+
+/* --- CABECERA --- */
+.cabecera-dual {
+    display: flex;
+    align-items: center;
+    padding: 15px 40px;
+    position: relative;
+    height: 80px;
+    flex-shrink: 0;
+}
+
+.pildora-roja {                                         
+    background-color: #e31e24;
+    color: white;
+    padding: 8px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    z-index: 2;
+}
+
+.banner-naranja-curvo {
+    background-color: #f48e28; 
+    position: absolute; 
+    right: 0; 
+    top: 0;
+    height: 100%; 
+    width: 45%; 
+    border-bottom-left-radius: 40px;
+    display: flex; 
+    align-items: center; 
+    padding-left: 50px; 
+    color: white;
+}
+
+.banner-naranja-curvo h1 { font-size: clamp(1.5rem, 3.5vh, 2.2rem); }
+
+/* --- CONTENIDO --- */
+.contenido-actividades {
+    display: flex;
+    padding: 2vh 4vw;
+    flex-grow: 1;
+    gap: 4vw;
+    overflow-y: auto; /* Para portátiles pequeños */
+}
+
+.columna { width: 50%; display: flex; flex-direction: column; gap: 3vh; }
+
+.instruccion { 
+    font-weight: 700; 
+    font-size: clamp(0.95rem, 2vh, 1.15rem); 
+    margin-bottom: 1.5vh; 
+}
+
+.numero-rojo { color: #e31e24; margin-right: 5px; }
+
+/* Checkboxes */
+.opciones-check { display: flex; flex-direction: column; gap: 8px; margin-bottom: 2vh; }
+.opciones-check label {
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+.opciones-check input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #f48e28;
+}
+
+/* Ilustración niño */
+.ilustracion-nino { 
+    text-align: right; 
+    margin-top: -10px; /* Sube un poco para aprovechar el hueco de las opciones */
+}
+.ilustracion-nino img { 
+    max-height: 18vh; /* Antes estaba en 12vh, ahora se verá mucho mejor */
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+/* Banderas y Líneas */
+.ejercicio-banderas { 
+    display: flex; 
+    gap: 20px; 
+    align-items: flex-start; 
+    margin-top: 15px; /* Este margen es el que baja las banderas para que peguen con el texto */
+}
+
+.banderas-stack img { 
+    height: 220px; /* Ajustamos un pelín el alto para que la proporción sea exacta */
+    object-fit: contain; 
+}
+
+.lineas-completar { 
+    flex-grow: 1; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px; /* Aumentamos el hueco entre líneas para que respiren */
+    padding-top: 5px; /* Ajuste fino de altura */
+}
+
+.fila-pauta { 
+    display: flex; 
+    align-items: flex-end; 
+    gap: 10px; 
+    font-size: 1rem; 
+    height: 32px; /* Forzamos una altura de fila para que coincida con cada bandera */
+}
+
+/* Pautas de escritura */
+.pauta-azul {
+    flex-grow: 1;
+    height: 32px; /* Coincide con la altura de la fila */
+    border-bottom: 2px solid #cce0ff;
+}
+.pauta-azul.larga { width: 100%; margin-top: 10px; }
+
+/* Bloque Investiga */
+.sub-investiga { margin-top: 2vh; padding-left: 20px; }
+.txt-secundario { font-weight: 600; margin-bottom: 10px; color: #444; }
+.fila-pregunta { display: flex; flex-direction: column; margin-bottom: 10px; }
+.fila-pregunta span { font-size: 0.9rem; margin-bottom: 4px; }
+
+.space-top { margin-top: 2vh; }
+
+/* --- NAVEGACIÓN --- */
+.controles { display: flex; justify-content: center; gap: 15px; padding: 15px 0; flex-shrink: 0; }
+.btn-nav {
+    text-decoration: none; padding: 10px 40px; border-radius: 30px;
+    background: #e5e7eb; color: #4b5563; font-weight: 600; transition: 0.3s;
+}
+.btn-rojo { background: #e31e24; color: white; }
+.btn-nav:hover { transform: scale(1.05); }
+
+@keyframes entradaFicha {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsividad para pantallas muy bajitas (Portátiles) */
+@media (max-height: 750px) {
+    .ilustracion-nino img { 
+        max-height: 15vh; 
+    }
+    .banderas-stack img { 
+        height: 180px; 
+    }
+    .lineas-completar {
+        gap: 8px;
+    }
+}
+.footer-legal-fixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+    background: white;
+    border-top: 1px solid #f0f0f0;
+}
+
+.footer-legal-fixed p { 
+    font-size: 0.65rem; 
+    color: #aaa; 
+}

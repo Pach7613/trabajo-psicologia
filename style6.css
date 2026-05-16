@@ -1,0 +1,196 @@
+/* --- CSS FICHA OPTIMIZADA: SIN MASCOTA Y LOGO PEQUEÑO --- */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fcf6ed;
+    font-family: 'Fredoka', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.contenedor-principal {
+    background: white;
+    width: 96%;
+    max-width: 1300px;
+    height: 84vh; /* Ajustado para que el contenido respire */
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- CABECERA --- */
+.cabecera-dual {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    position: relative;
+}
+
+.pildora-roja {
+    background-color: #e31e24;
+    color: white;
+    padding: 8px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-left: 40px;
+    z-index: 2;
+}
+
+.banner-naranja-curvo {
+    background-color: #f48e28;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 70%;
+    border-bottom-left-radius: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 40px;
+    color: white;
+}
+
+/* LOGO DEL TÍTULO: AHORA MÁS PEQUEÑO */
+.icono-cabecera {
+    width: 45px; /* Tamaño reducido para que no sea gigante */
+    height: auto;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+/* Esto pinta en rojo tanto el número como el texto destacado */
+.titulo-actividad .num,
+.titulo-actividad .rojo {
+    color: #e31e24;
+    font-weight: 700; /* Para asegurarte de que ambos tengan el mismo grosor */
+}
+.banner-naranja-curvo h1 {
+    font-size: clamp(1.5rem, 3vh, 2.2rem);
+    margin-left: 15px;
+}
+
+/* --- CONTENIDO DISTRIBUIDO PARA RELLENAR ESPACIO --- */
+.grid-contenido {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3vw;
+    padding: 3vh 5vw; /* Más padding para centrar el contenido */
+    flex-grow: 1;
+    align-items: start;
+}
+
+.bloque-izquierda, .bloque-derecha {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh; /* Espacio extra entre preguntas para rellenar */
+}
+
+/* ICONOS DE ACTIVIDAD PEQUEÑOS */
+.icono-mini {
+    width: 28px;
+    height: auto;
+}
+
+.encabezado-icono {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.titulo-actividad {
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+/* --- PREGUNTAS Y OPCIONES --- */
+.bloque-pregunta p {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+.check-item {
+    display: block;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+    padding-left: 28px;
+}
+
+/* --- PAUTAS MÁS LARGAS Y ESPACIADAS --- */
+.linea-pauta {
+    height: 35px; /* Un pelín más altas */
+    border-bottom: 1.5px solid #a5c7e9;
+    margin-bottom: 8px;
+}
+
+/* --- SECCIÓN UNIR --- */
+.flex-unir {
+    display: flex;
+    justify-content: space-between;
+    margin: 2.5vh 0; /* Más margen para ocupar espacio */
+}
+
+.cajas-izq, .cajas-der {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+}
+
+.caja {
+    border: 2px solid #f9cc48;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-align: center;
+    min-width: 160px;
+}
+
+/* --- BOTONES DE ABAJO --- */
+.controles-fijos {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn-nav {
+    text-decoration: none;
+    padding: 10px 35px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.btn-volver { background: #e5e7eb; color: #4b5563; }
+.btn-inicio { background: #d91a1d; color: white; }
+
+/* Ajuste fino para pantallas pequeñas */
+@media (max-height: 750px) {
+    .linea-pauta { height: 28px; }
+    .grid-contenido { padding: 2vh 4vw; }
+    .cabecera-dual { height: 65px; }
+}
+.footer-legal-fixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+    background: white;
+    border-top: 1px solid #f0f0f0;
+}
+
+.footer-legal-fixed p { 
+    font-size: 0.65rem; 
+    color: #aaa; 
+}

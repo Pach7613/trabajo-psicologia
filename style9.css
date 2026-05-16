@@ -1,0 +1,164 @@
+/* --- CSS COMUNICACIÓN: CABECERA FINA Y ESPACIO MAXIMIZADO --- */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: #fdf6ec;
+    font-family: 'Fredoka', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.contenedor-principal {
+    background: white;
+    width: 98%;
+    max-width: 1400px; 
+    height: 88vh; /* Un poco más alto para aprovechar el espacio */
+    border-radius: 25px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    animation: entradaFicha 0.8s ease-out forwards;
+    overflow: hidden;
+}
+
+/* 1. CABECERA MÁS FINA PARA QUE EL TEXTO RESPIRE */
+.cabecera-dual {
+    display: flex;
+    align-items: center; /* Alineado al centro para ahorrar altura */
+    padding: 15px 40px; /* Reducido */
+    position: relative;
+    height: 80px; /* Altura controlada */
+}
+
+.pildora-roja {
+    background-color: #e31e24;
+    color: white;
+    padding: 8px 25px; /* Más estrecha */
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    z-index: 2;
+}
+
+.banner-naranja-curvo {
+    background-color: #f48e28; 
+    position: absolute; 
+    right: 0; 
+    top: 0;
+    height: 100%; 
+    width: 45%; /* Un poco más estrecho para dar aire */
+    border-bottom-left-radius: 40px;
+    display: flex; 
+    align-items: center; 
+    padding-left: 40px; 
+    color: white;
+}
+
+.banner-naranja-curvo h1 { 
+    font-size: clamp(1.4rem, 3.2vh, 2rem);
+    margin-left: 15px;
+}
+
+.icono-sol { width: clamp(30px, 4.5vh, 45px); }
+
+/* 2. GRID DE ACTIVIDADES CON TEXTO MÁS ARRIBA */
+.grid-actividades {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: clamp(20px, 4vw, 50px);
+    padding: 1vh 50px 0 50px; /* Padding superior mínimo */
+    flex-grow: 1;
+    overflow: hidden;
+    align-content: start; /* Empuja todo hacia arriba */
+}
+
+.instruccion { 
+    font-weight: 700; 
+    font-size: clamp(1.1rem, 2.4vh, 1.4rem); 
+    margin-bottom: clamp(10px, 2vh, 18px); 
+}
+
+.numero-rojo { color: #e31e24; font-size: 1.3em; }
+
+.pregunta-bloque p { 
+    margin-bottom: 5px; 
+    color: #333; 
+    font-weight: 500; 
+    font-size: clamp(1rem, 2.1vh, 1.2rem); /* Letra un pelín más grande */
+}
+
+.respuesta-dada { 
+    margin-top: 5px; 
+    color: #666 !important; 
+    font-size: 0.95em;
+    line-height: 1.2;
+}
+
+/* 3. LÍNEAS DE CUADERNO */
+.linea-respuesta {
+    width: 100%;
+    height: clamp(22px, 3.8vh, 32px);
+    border-bottom: 1px solid #a5b4fc; 
+    margin-bottom: 10px;
+}
+
+/* 4. BLOQUE INFERIOR AJUSTADO */
+.decoracion-inferior {
+    width: 100%;
+    height: clamp(90px, 16vh, 140px); /* Ligeramente más bajo */
+    background-image: url('../imágenes/bloque.png'); 
+    background-size: cover;
+    background-position: top;
+    margin-top: auto; 
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 40px 10px 40px;
+}
+
+.img-niñas-final {
+    width: clamp(160px, 28vh, 250px);
+    height: auto;
+}
+
+.img-relojes-final {
+    width: clamp(60px, 10vh, 95px);
+    height: auto;
+    margin-bottom: 15px;
+}
+
+/* CONTROLES */
+.controles { display: flex; gap: 15px; margin: 15px 0; }
+.btn-nav {
+    text-decoration: none; padding: 10px 35px; border-radius: 25px;
+    background: #e5e7eb; color: #4b5563; font-weight: 600;
+}
+.btn-rojo { background: #e31e24; color: white; }
+
+@keyframes entradaFicha {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.footer-legal-fixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+    background: white;
+    border-top: 1px solid #f0f0f0;
+}
+
+.footer-legal-fixed p { 
+    font-size: 0.65rem; 
+    color: #aaa; 
+}

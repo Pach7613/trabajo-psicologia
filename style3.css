@@ -1,0 +1,137 @@
+/* --- CSS LECTURA: AMPLIADO Y EQUILIBRADO --- */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f8f1e7;
+    font-family: 'Fredoka', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 10px;
+    overflow: hidden;
+}
+
+/* 1. CONTENEDOR MÁS AMPLIO */
+.lectura-container {
+    background: white;
+    width: 98%; /* Ocupa casi todo el ancho */
+    max-width: 1450px; /* Aumentado para que "respire" a los lados */
+    padding: clamp(15px, 3vh, 30px) 50px; 
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column; /* Cambiamos a columna para separar nav de contenido */
+    max-height: 88vh;
+    animation: entradaFicha 0.8s ease-out forwards;
+}
+
+/* 2. GRID CON MEJOR REPARTO */
+.contenido-lectura {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr; 
+    gap: 40px; /* Más separación entre texto e imagen */
+    align-items: center;
+    width: 100%;
+    flex-grow: 1;
+}
+
+/* 3. CABECERA CON MÁS AIRE */
+.cabecera-titulo-lineal {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: clamp(15px, 3vh, 25px);
+}
+
+.icono-sol-peque {
+    width: clamp(35px, 5vh, 50px);
+}
+
+.titulo-relato-ajustado {
+    color: #f97316;
+    font-size: clamp(1.6rem, 3.5vh, 2.5rem); /* Título más imponente */
+    font-weight: 700;
+}
+
+/* 4. TEXTO MÁS LEGIBLE (PROYECTOR) */
+.parrafos-compactos p {
+    font-size: clamp(1rem, 2.1vh, 1.3rem); /* Subimos el tamaño base */
+    line-height: 1.45; /* Más interlineado para que no se canse la vista */
+    margin-bottom: clamp(6px, 1.5vh, 12px); 
+    color: #1f2937;
+}
+
+.dialogo {
+    font-weight: 600;
+    padding-left: 12px;
+    color: #111827;
+}
+
+.autor {
+    text-align: right;
+    font-weight: 700;
+    margin-top: 10px;
+    font-size: 1.1rem;
+}
+
+/* 5. IMAGEN QUE NO AGOBIA */
+.img-principal {
+    width: 100%;
+    max-height: 65vh; /* Le damos un poco más de margen de crecimiento */
+    object-fit: contain;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.05));
+}
+
+/* 6. NAVEGACIÓN */
+.nav-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.nav-btn {
+    text-decoration: none;
+    padding: 12px 40px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: 0.2s;
+}
+
+.btn-gris { background: #e5e7eb; color: #4b5563; }
+.btn-rojo { background: #d91a1d; color: white; }
+
+/* ANIMACIÓN */
+@keyframes entradaFicha {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* AJUSTES PARA PORTÁTILES BAJOS */
+@media (max-height: 750px) {
+    .parrafos-compactos p { font-size: 0.95rem; line-height: 1.35; }
+    .img-principal { max-height: 55vh; }
+    .lectura-container { padding: 15px 40px; }
+}
+.footer-legal-fixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+    background: white;
+    border-top: 1px solid #f0f0f0;
+}
+
+.footer-legal-fixed p { 
+    font-size: 0.65rem; 
+    color: #aaa; 
+}
