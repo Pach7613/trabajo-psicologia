@@ -226,68 +226,126 @@ body {
    5. MEDIA QUERY: ADAPTACIÓN COMPLETA PARA MÓVILES (PANTALLAS VERTICALES)
    ========================================================== */
 @media (max-width: 768px) {
-    body {
-        overflow: auto; /* Permite scroll vertical en móviles pequeños si se necesita */
+    /* Permitimos que la página crezca a lo alto de forma natural */
+    body, html {
+        height: auto !important;
+        min-height: 100vh;
+        overflow-y: auto !important;
     }
 
+    /* La cabecera roja ya no tiene un alto fijo rígido */
     .main-header {
-        min-height: 55vh;
-        padding-bottom: 80px;
+        height: auto !important;
+        min-height: 50vh;
+        padding-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
+    /* Los logos de arriba los dejamos limpios */
     .top-logos {
-        padding: 15px 4%;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
-    .logo-santillana { height: 35px; }
-    .logo-school { height: 35px; }
+    .logo-santillana { height: 30px !important; }
+    .logo-school { height: 30px !important; }
 
-    /* Reposicionamos el idioma en móvil para que no colisione con los logos */
+    /* El selector de idioma ya no flota encima de los textos */
     .language-selector {
-        top: 70px;
-        right: 4%;
+        position: relative !important;
+        top: 0 !important;
+        right: 0 !important;
+        margin: 10px auto 20px auto;
+        z-index: 10;
     }
 
+    /* Contenedor de los textos principales */
     .hero-content {
-        margin-top: 6vh;
+        margin-top: 10px !important;
+        padding: 0 20px;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
     }
 
-    .subtitle { font-size: 0.9rem; }
-    .course-detail { font-size: 1rem; }
+    .hero-content h1 {
+        font-size: 1.8rem !important; /* Achicamos un pelín el título principal */
+        line-height: 1.2;
+    }
 
+    .subtitle { font-size: 1rem !important; }
+    .course-detail { font-size: 0.9rem !important; }
+
+    /* ¡EL GRAN CAMBIO! Los niños ya no se aplastan */
     .kids-illustration {
-        margin-bottom: -30px;
+        position: relative !important;
+        margin: 20px auto 0 auto !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+        width: 85% !important;
+        max-width: 320px;
+        height: auto !important;
+        text-align: center;
     }
     
     .kids-illustration img {
-        height: 18vh; /* Reducimos el tamaño de la foto para que no asome demasiado hacia arriba */
+        width: 100% !important;
+        height: auto !important; /* Mantiene la proporción real de los dibujos */
     }
 
+    /* El arco blanco se achata para que actúe de suelo real y no tape las caras */
     .white-arc {
-        height: 70px; /* Reducimos la curvatura del arco para que no tape las cabezas */
-        width: 140%;  /* Más ancho para suavizar la elipse en móvil */
+        position: relative !important;
+        height: 50px !important; 
+        width: 120% !important;
+        margin-top: -20px; /* Lo solapamos un pelín con el fondo rojo */
+        border-radius: 50% 50% 0 0; /* Suaviza la curva */
+        left: -10% !important;
     }
 
+    /* El área blanca de abajo donde van los botones y logos institucionales */
     .content-area {
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         justify-content: flex-start;
-        gap: 30px;
-        padding-top: 10px;
+        gap: 25px;
+        padding: 30px 20px 40px 20px;
+        height: auto !important;
+        min-height: 30vh;
     }
 
+    /* El botón de inicio limpio y fácil de pulsar en pantallas táctiles */
+    .start-btn {
+        position: static !important;
+        transform: none !important;
+        width: 85% !important;
+        max-width: 280px;
+        text-align: center;
+        padding: 14px 0 !important;
+        font-size: 1.1rem !important;
+        margin: 0 auto;
+    }
+
+    /* Los logos de abajo ordenados */
     .bottom-logos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap; /* Si no caben, bajan solos sin romperse */
         gap: 15px;
-        margin-bottom: 20px;
+        margin-top: auto;
     }
 
     .bottom-logos img {
-        height: 30px; /* Logos institucionales más pequeños para que quepan juntos */
-    }
-
-    .start-btn {
-        position: static; /* Deja de ser flotante y se coloca limpiamente abajo */
-        width: 80%;
-        text-align: center;
-        padding: 12px 0;
-        font-size: 1.1rem;
+        height: 28px !important;
     }
 }
