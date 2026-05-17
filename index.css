@@ -7,235 +7,55 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
     background-color: #ffffff;
+    overflow-x: hidden; /* Evita scrolls laterales raros */
 }
 
-/* --- 2. CABECERA ROJA --- */
+/* --- 2. CABECERA ROJA FLEXIBLE --- */
 .main-header {
     background-color: #d91a1d;
-    height: 75vh; 
+    min-height: 70vh; 
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between; /* Distribuye arriba logos y abajo el arco */
     color: white;
-    z-index: 1; /* Prioridad base */
+    z-index: 1;
+    padding-bottom: 0;
 }
 
 .top-logos {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 20px 5%;
-}
-
-.logo-santillana { height: 50px; }
-.logo-school { height: 50px; }
-
-/* Selector de Idioma */
-.language-selector {
-    position: absolute;
-    top: 20px;
-    right: 12%; /* Ajustado para no chocar con el logo del cole */
-    z-index: 100;
-}
-
-#lang-btn {
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid white;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-/* Contenido de Texto */
-.hero-content {
-    text-align: center;
-    margin-top: 5vh;
+    position: relative;
     z-index: 10;
 }
 
-.main-title {
-    font-size: clamp(3rem, 8vw, 5rem);
-    font-weight: 700;
-    line-height: 1.1;
-}
-
-/* --- 3. ILUSTRACIÓN DETRÁS DEL ARCO --- */
-.arc-container {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.kids-illustration {
-    position: relative;
-    z-index: 1; /* Por debajo del arco */
-    margin-bottom: -50px; /* Ajuste para que se "meta" en el arco */
-}
-
-.kids-illustration img {
-    height: 28vh;
+.logo-santillana, .logo-school { 
+    height: 50px; 
     width: auto;
-    display: block;
+    object-fit: contain;
 }
 
-.white-arc {
-    width: 105%;
-    height: 130px;
-    background-color: white;
-    border-top-left-radius: 50% 100%;
-    border-top-right-radius: 50% 100%;
-    position: relative;
-    z-index: 5; /* Por encima de los niños */
-}
-
-/* --- 4. ÁREA INFERIOR (LOGOS Y BOTÓN ENTRAR) --- */
-.content-area {
-    flex: 1;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 5%;
-}
-
-.bottom-logos {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-}
-
-.bottom-logos img {
-    height: 45px;
-    filter: none; /* Quitamos el blanco y negro */
-    opacity: 1;   /* Color total */
-}
-
-.start-btn {
-    position: absolute;
-    bottom: 30px;
-    right: 5%; /* Botón abajo a la derecha */
-    background-color: #d91a1d;
-    color: white;
-    text-decoration: none;
-    padding: 14px 45px;
-    border-radius: 50px;
-    font-weight: bold;
-    font-size: 1.1rem;
-    box-shadow: 0 4px 15px rgba(217, 26, 29, 0.3);
-    transition: transform 0.2s ease;
-}
-
-.start-btn:hover {
-    transform: scale(1.05);
-}
-/* --- SELECTOR DE IDIOMA MEJORADO --- */
+/* Selector de Idioma Corregido y Unificado */
 .language-selector {
-    position: absolute;
-    top: 30px;
-    /* Lo alejamos del logo del cole (derecha) */
-    right: calc(5% + 140px); 
+    position: relative;
     z-index: 1000;
-}
-
-#lang-btn {
-    background: rgba(255, 255, 255, 0.15); /* Efecto cristal */
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 50px;
-    cursor: pointer;
-    font-weight: 600;
-    font-family: 'Montserrat', sans-serif;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-#lang-btn:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-}
-
-#lang-btn::before {
-    content: "🌐"; /* Icono de mundo */
-    font-size: 1.1rem;
-}
-
-/* Menú Desplegable */
-#lang-menu {
-    display: none;
-    position: absolute;
-    top: calc(100% + 10px);
-    right: 0;
-    background: white;
-    list-style: none;
-    padding: 10px 0;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    min-width: 160px;
-    overflow: hidden;
-    animation: fadeInDown 0.3s ease;
-}
-
-/* Mostrar cuando el padre tiene la clase .open */
-.language-selector.open #lang-menu {
-    display: block;
-}
-
-#lang-menu li a {
-    text-decoration: none;
-    color: #333;
-    display: block;
-    padding: 12px 20px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: background 0.2s;
-}
-
-#lang-menu li a:hover {
-    background: #f8f8f8;
-    color: #d91a1d; /* Color corporativo al pasar el ratón */
-}
-
-/* Animación de entrada */
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-/* --- SELECTOR DE IDIOMA POSICIONADO --- */
-.language-selector {
-    position: absolute;
-    top: 30px;
-    /* Lo alejamos del logo del cole (derecha) */
-    right: calc(5% + 140px); 
-    z-index: 1000;
+    margin-left: auto;
+    margin-right: 20px;
 }
 
 #lang-btn {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); /* Soporte para Safari */
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.4);
     color: white;
     padding: 8px 18px;
@@ -254,13 +74,17 @@ body {
     transform: translateY(-2px);
 }
 
-/* Ajuste para el menú desplegable para que no se corte */
+#lang-btn::before {
+    content: "🌐";
+    font-size: 1.1rem;
+}
+
 #lang-menu {
     display: none;
     position: absolute;
     top: calc(100% + 10px);
     left: 50%;
-    transform: translateX(-50%); /* Centrado respecto al botón */
+    transform: translateX(-50%);
     background: white;
     list-style: none;
     padding: 8px 0;
@@ -268,8 +92,213 @@ body {
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     min-width: 150px;
     z-index: 1001;
+    overflow: hidden;
+    animation: fadeInDown 0.3s ease;
 }
 
 .language-selector.open #lang-menu {
     display: block;
+}
+
+#lang-menu li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+#lang-menu li a:hover {
+    background: #f8f8f8;
+    color: #d91a1d;
+}
+
+/* Contenido de Texto */
+.hero-content {
+    text-align: center;
+    margin: 20px 0 auto 0; /* Empuja hacia abajo de los logos de forma fluida */
+    padding: 0 20px;
+    z-index: 10;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+.main-title {
+    font-size: clamp(2.2rem, 6vw, 4.5rem); /* Escalado perfecto en proyectores */
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 10px 0;
+}
+
+.course-detail {
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+/* --- 3. ILUSTRACIÓN Y ARCO BLANCO --- */
+.arc-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-top: 40px; /* Separación de seguridad con el texto */
+}
+
+.kids-illustration {
+    position: relative;
+    z-index: 2; 
+    margin-bottom: -60px; /* Provoca que se metan dentro de la curva */
+}
+
+.kids-illustration img {
+    height: auto;
+    max-height: 250px; /* Límite para que no se coma la pantalla */
+    width: 100%;
+    max-width: 450px;
+    display: block;
+    object-fit: contain;
+}
+
+.white-arc {
+    width: 110%;
+    height: 100px;
+    background-color: white;
+    border-top-left-radius: 50% 100%;
+    border-top-right-radius: 50% 100%;
+    position: relative;
+    z-index: 5;
+}
+
+/* --- 4. ÁREA INFERIOR DINÁMICA --- */
+.content-area {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 5%;
+    gap: 30px;
+    position: relative;
+    background-color: white;
+}
+
+.bottom-logos {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap; /* Si no caben en horizontal (móvil), bajan solos */
+}
+
+.bottom-logos img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+}
+
+.start-btn {
+    background-color: #d91a1d;
+    color: white;
+    text-decoration: none;
+    padding: 14px 40px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(217, 26, 29, 0.3);
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.start-btn:hover {
+    transform: scale(1.05);
+    background-color: #b81417;
+}
+
+/* --- 5. ADAPTACIÓN TOTAL PARA MÓVILES (Media Query) --- */
+@media (max-width: 768px) {
+    .main-header {
+        min-height: auto; /* Quitamos la restricción de altura rígida */
+    }
+
+    .top-logos {
+        flex-wrap: wrap; /* Permite organizar los logos */
+        gap: 15px;
+        justify-content: center;
+        padding: 15px;
+    }
+
+    .logo-santillana, .logo-school {
+        height: 40px; /* Logos ligeramente más pequeños */
+    }
+
+    .language-selector {
+        margin: 5px auto 0 auto; /* Centramos el botón en móvil */
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        right: auto;
+    }
+
+    #lang-menu {
+        top: 100%;
+    }
+
+    .hero-content {
+        margin-top: 25px;
+    }
+
+    .main-title {
+        font-size: 2.2rem; /* Tamaño controlado para móvil */
+    }
+
+    .kids-illustration {
+        margin-bottom: -45px;
+    }
+
+    .kids-illustration img {
+        max-height: 180px; /* Reducción proporcional para pantallas verticales */
+        max-width: 320px;
+    }
+
+    .white-arc {
+        height: 60px; /* Curva más suave en móvil */
+    }
+
+    .content-area {
+        padding: 25px 5% 80px 5%; /* Añadimos espacio abajo para el botón */
+        justify-content: flex-start;
+    }
+
+    .bottom-logos {
+        gap: 20px;
+    }
+    
+    .bottom-logos img {
+        height: 35px;
+    }
+
+    .start-btn {
+        position: fixed; /* En móviles se queda estático abajo para mejor usabilidad */
+        bottom: 20px;
+        left: 5%;
+        right: 5%;
+        width: 90%;
+        z-index: 2000;
+        text-align: center;
+    }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translate(-50%, -10px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
 }
