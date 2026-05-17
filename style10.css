@@ -1,4 +1,6 @@
-/* --- CSS PAGINA 9: DIÁLOGOS Y ESCENA RESPONSIVE --- */
+/* ==========================================================================
+   CSS PÁGINA 10: AJUSTE PERFECTO SIN CORTES (FIJADO)
+   ========================================================================== */
 
 * { 
     box-sizing: border-box; 
@@ -15,29 +17,33 @@ body {
     justify-content: center;
     min-height: 100vh;
     padding: 10px;
-    overflow-x: hidden; /* Bloquea scrolls laterales rebeldes */
-    overflow-y: hidden; /* Sin scroll en ordenadores y proyector por defecto */
+    overflow-x: hidden; 
+    /* CAMBIO: Permitimos scroll vertical general solo si la pantalla es muy enana, para que nunca se bloquee nada */
+    overflow-y: auto; 
 }
 
 .contenedor-principal {
     background: white;
     width: 95%;
     max-width: 1200px;
-    height: 85vh;
+    /* CAMBIO: Bajamos a 82vh para asegurar que los botones inferiores queden siempre a la vista */
+    height: 82vh; 
+    min-height: 520px; /* Altura mínima de seguridad para que no se canibalice el diseño */
     border-radius: 25px;
     position: relative;
     display: flex;
     flex-direction: column;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    margin-bottom: 30px; /* Margen de seguridad para el pie legal fijo */
+    margin-bottom: 20px; 
+    overflow: hidden; 
 }
 
 /* --- CABECERA AJUSTADA --- */
 .cabecera-dual { 
     display: flex;
-    padding: 20px 40px;
+    padding: 15px 40px; /* Reducido un pelín el padding */
     position: relative;
-    height: 120px;
+    height: 100px; /* Reducido de 120px a 100px para ganar espacio vital */
     width: 100%;
     align-items: center;
 }
@@ -45,7 +51,7 @@ body {
 .pildora-roja {
     background-color: #e31e24; 
     color: white; 
-    padding: 12px 25px;
+    padding: 10px 22px;
     border-radius: 30px; 
     font-weight: 600; 
     z-index: 2;
@@ -58,7 +64,7 @@ body {
     position: absolute; 
     right: 0; 
     top: 0;
-    height: 80px; 
+    height: 70px; /* Reducido de 80px a 70px */
     width: 55%; 
     border-bottom-left-radius: 50px;
     display: flex; 
@@ -69,31 +75,32 @@ body {
 }
 
 .banner-naranja-curvo h1 {
-    font-size: clamp(1.4rem, 3.2vh, 2rem);
+    font-size: clamp(1.3rem, 2.8vh, 1.8rem);
     margin-left: 15px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-/* --- CUERPO CENTRAL (Escritorio / Proyector) --- */
+/* --- CUERPO CENTRAL --- */
 .contenido-ejercicio {
     display: flex;
-    padding: 10px 50px 30px 50px;
+    padding: 0px 50px 10px 50px; /* Reducido al mínimo el espacio arriba y abajo */
     flex-grow: 1;
     gap: 40px; 
     position: relative;
+    align-items: center; 
 }
 
 .zona-escritura { 
-    width: 45%; 
+    width: 48%; 
     z-index: 5; 
 }
 
 .instruccion { 
     font-weight: 700; 
-    font-size: 1.1rem; 
-    margin-bottom: 20px; 
+    font-size: 1.05rem; 
+    margin-bottom: 15px; /* Menos espacio de separación */
     color: #000;
 }
 
@@ -104,11 +111,11 @@ body {
     display: flex; 
     align-items: flex-start; 
     gap: 12px; 
-    margin-bottom: 15px; 
+    margin-bottom: 10px; /* Reducido de 15px a 10px */
 }
 
 .mini-avatar { 
-    width: 40px; 
+    width: 38px; /* Un pelín más pequeño */
     height: auto; 
     flex-shrink: 0;
 }
@@ -116,14 +123,14 @@ body {
 .pauta-doble { flex-grow: 1; }
 
 .linea-respuesta { 
-    height: 25px; 
+    height: 22px; /* Reducido de 25px a 22px para compactar el bloque de escritura */
     border-bottom: 1px solid #a5b4fc; 
-    margin-bottom: 5px; 
+    margin-bottom: 4px; 
 }
 
 /* Zona de imágenes derecha */
 .zona-imagenes {
-    width: 55%;
+    width: 52%;
     position: relative;
     display: flex;
     justify-content: flex-end; 
@@ -131,8 +138,9 @@ body {
 }
 
 .cuadro-escena-azul {
-    width: 90%; 
-    height: 300px;
+    width: 100%; 
+    max-width: 480px; 
+    height: 250px; /* CAMBIO: Reducido de 280px a 250px para garantizar que quepa holgadamente */
     border-radius: 30px;
     overflow: hidden;
     border: 12px solid #d4ecec; 
@@ -150,42 +158,42 @@ body {
     position: absolute;
     bottom: -20px;
     left: -40px;
-    height: 280px;
+    height: 250px;
     width: auto;
     z-index: 6;
 }
 
-/* --- DECORACIÓN INFERIOR PÁGINA 9 --- */
+/* --- DECORACIÓN INFERIOR --- */
 .decoracion-inferior {
     width: 100%;
-    height: 140px;
+    height: 100px; /* Reducido de 120px a 100px para que no robe tanto espacio vertical */
     background-image: url('../imágenes/bloque.png'); 
     background-size: cover;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding: 0 40px 10px 40px;
-    margin-top: auto;
+    padding: 0 40px 8px 40px;
+    margin-top: auto; 
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
-    flex-shrink: 0;
+    flex-shrink: 0; 
 }
 
-.img-niñas-base { width: 200px; height: auto; }
-.img-relojes-base { width: 80px; height: auto; margin-bottom: 10px; }
+.img-niñas-base { width: 160px; height: auto; } /* Ajustado sutilmente */
+.img-relojes-base { width: 70px; height: auto; margin-bottom: 5px; }
 
 /* Botones de navegación */
 .controles { 
     display: flex; 
     gap: 15px; 
-    margin-top: 15px; 
+    margin-top: 10px; 
     justify-content: center;
     width: 100%;
 }
 
 .btn-nav {
     text-decoration: none; 
-    padding: 10px 35px; 
+    padding: 8px 35px; /* Ligeramente más compactos */
     border-radius: 25px;
     background: #e5e7eb; 
     color: #4b5563; 
@@ -203,7 +211,7 @@ body {
     margin-top: auto;
     width: 100%;
     text-align: center;
-    padding: 8px 0;
+    padding: 5px 0;
     background: transparent;
 }
 
@@ -228,18 +236,17 @@ body {
    ========================================================================== */
 @media (max-width: 900px) {
     body {
-        overflow-y: auto; /* Forzamos scroll general fluido en móvil */
+        overflow-y: auto; 
         height: auto;
         padding: 15px 5px;
     }
 
     .contenedor-principal {
-        height: auto; /* El contenedor se adapta dinámicamente hacia abajo */
+        height: auto; 
         width: 100%;
         border-radius: 15px;
     }
 
-    /* Transformación de la cabecera absoluta a bloque sólido móvil */
     .cabecera-dual {
         height: auto;
         flex-direction: column;
@@ -271,7 +278,6 @@ body {
         white-space: normal; 
     }
 
-    /* Rompemos la disposición en paralelo a una sola columna limpia */
     .contenido-ejercicio {
         flex-direction: column;
         padding: 20px 15px;
@@ -287,7 +293,6 @@ body {
         line-height: 1.4;
     }
 
-    /* Líneas de escritura ampliadas en móvil para uso táctil */
     .linea-respuesta {
         height: 35px;
         margin-bottom: 8px;
@@ -299,24 +304,21 @@ body {
         margin-top: 10px;
     }
 
-    /* Reajuste del marco de la escena para que sea responsive */
     .cuadro-escena-azul {
         width: 100%;
-        height: 230px; /* Altura controlada para pantallas móviles */
-        border: 8px solid #d4ecec; /* Borde un poco más fino acorde al tamaño */
+        height: 230px; 
+        border: 8px solid #d4ecec; 
     }
 
-    /* Corregimos el posicionamiento del niño para que no rompa el layout */
     .img-niño-de-pie {
-        height: 180px; /* Reducido para que no eclipse la ilustración de la escena */
+        height: 180px; 
         left: -15px;
         bottom: -10px;
     }
 
-    /* Ajuste de la decoración inferior para limpiar el espacio de lectura */
     .decoracion-inferior {
         height: 70px;
-        background-image: none; /* Eliminamos el fondo de Canva */
+        background-image: none; 
         background-color: #fafafa;
         border-top: 1px solid #eee;
         padding: 10px 15px;
@@ -325,10 +327,9 @@ body {
     }
 
     .img-niñas-base, .img-relojes-base {
-        display: none; /* Ocultamos las ilustraciones base decorativas */
+        display: none; 
     }
 
-    /* Botones de navegación simétricos y táctiles */
     .controles {
         padding: 10px 15px 20px 15px;
         gap: 10px;
