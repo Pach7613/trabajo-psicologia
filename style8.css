@@ -1,3 +1,5 @@
+/* --- CSS DIARIO: VERSION RESPONSIVE TOTAL --- */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -11,16 +13,16 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center; 
-    height: 100vh; 
-    overflow: hidden; 
+    min-height: 100vh; 
     padding: 10px;
+    overflow-x: hidden; /* Evita scrolls laterales accidentales */
+    overflow-y: hidden; /* Sin scroll en ordenadores y proyector */
 }
 
 .contenedor-principal {
     background: white;
     width: 100%;
     max-width: 1100px;
-    /* Reducimos la altura para eliminar el espacio vacío de abajo */
     height: 75vh; 
     border-radius: 25px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
@@ -28,26 +30,28 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    margin-bottom: 30px; /* Espacio de seguridad por el pie legal fijo */
 }
 
-/* Cabecera ajustada */
+/* --- CABECERA AJUSTADA --- */
 .cabecera-dual {
     display: flex;
-    padding: 10px 40px;
+    padding: 20px 40px;
     position: relative;
-    height: 90px;
+    height: 120px;
+    width: 100%;
+    align-items: center;
 }
 
 .pildora-roja {
     background-color: #e31e24;
     color: white;
-    padding: 10px 25px;
-    border-radius: 0 0 20px 20px;
+    padding: 12px 25px;
+    border-radius: 30px;
     font-weight: 600;
     z-index: 2;
-    position: absolute;
-    top: 0;
-    left: 50px;
+    height: fit-content;
+    flex-shrink: 0;
 }
 
 .banner-naranja-curvo {
@@ -61,12 +65,19 @@ body {
     display: flex;
     align-items: center;
     padding-left: 60px;
+    padding-right: 20px;
     color: white;
 }
 
-.banner-naranja-curvo h1 { font-size: 2rem; margin-left: 15px; }
+.banner-naranja-curvo h1 { 
+    font-size: 2rem; 
+    margin-left: 15px; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
-/* Grid con más aire entre líneas */
+/* --- GRID DIARIO (Escritorio / Proyector) --- */
 .grid-diario {
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
@@ -85,14 +96,13 @@ body {
 
 .diario-contenido p {
     font-size: 1.15rem;
-    /* Aumentamos la separación entre líneas de texto */
     line-height: 1.6; 
     margin-bottom: 15px;
     font-weight: 500;
     color: #222;
 }
 
-/* Imágenes ajustadas */
+/* --- IMÁGENES Y BLOQUES --- */
 .col-imagenes {
     display: flex;
     flex-direction: column;
@@ -109,6 +119,7 @@ body {
 .img-relojes {
     width: 130px;
     height: auto;
+    flex-shrink: 0;
 }
 
 .textos-laterales p {
@@ -124,11 +135,13 @@ body {
     margin-top: 10px;
 }
 
-/* Botones subidos */
+/* --- BOTONES DE NAVEGACIÓN --- */
 .controles {
     display: flex;
     gap: 15px;
-    margin-top: 15px; /* Al reducir el contenedor, estos suben solos */
+    margin-top: 15px; 
+    justify-content: center;
+    width: 100%;
 }
 
 .btn-nav {
@@ -138,113 +151,144 @@ body {
     background: #e5e7eb;
     color: #4b5563;
     font-weight: 600;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.btn-nav:hover {
+    transform: scale(1.03);
 }
 
 .btn-rojo { background: #e31e24; color: white; }
 
-
-/* Cabecera idéntica a la foto */
-.cabecera-dual {
-    display: flex;
-    padding: 20px 40px;
-    position: relative;
-    height: 120px;
-}
-
-.pildora-roja {
-    background-color: #e31e24;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 30px;
-    font-weight: 600;
-    z-index: 2;
-    height: fit-content;
-}
-/* --- ANIMACIÓN DE ENTRADA --- */
-
-/* Definimos la animación */
-@keyframes entradaFicha {
-    from {
-        opacity: 0;
-        transform: translateY(20px); /* Empieza un poco más abajo */
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0); /* Termina en su sitio */
-    }
-}
-/* RESPONSIVE */
-@media (max-width: 1024px) {
-    .lectura-container {
-        max-height: none; /* En tablets/móviles dejamos que fluya normal */
-    }
-    
-    .contenido-lectura {
-        grid-template-columns: 1fr;
-    }
-    
-    .img-principal {
-        max-height: 400px; /* Tamaño controlado en móvil */
-    }
-}
-@media (max-width: 900px) {
-    .contenido-grid {
-        grid-template-columns: 1fr; /* Una columna en tablets/móviles */
-    }
-    
-    .ficha-container {
-        padding: 20px;
-    }
-}
-
-@media (max-width: 500px) {
-    .columna-fotos {
-        grid-template-columns: 1fr; /* En móviles muy pequeños, fotos una debajo de otra para que se vean bien */
-    }
-    
-    .titulo-ficha {
-        font-size: 1.8rem;
-    }
-}
-/* --- ANIMACIÓN DE ENTRADA (Copia esto) --- */
-
-/* 1. Definimos cómo se mueve la animación */
-@keyframes entradaFicha {
-    from {
-        opacity: 0;
-        transform: translateY(20px); /* Empieza un poco más abajo y transparente */
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0); /* Termina en su posición original y visible */
-    }
-}
-
-/* 2. Aplicamos la animación a los elementos que quieras */
-/* Se suele poner en el contenedor principal para que toda la ficha suba suavemente */
-.contenedor-principal, .ficha-container {
-    animation: entradaFicha 0.8s ease-out forwards;
-}
-
-/* Opcional: Si quieres el efecto de "cascada", aplica tiempos diferentes */
-.titulo-ficha, .cabecera-dual {
-    animation: entradaFicha 1s ease-out forwards;
-}
-
-.contenido-ejercicio, .contenido-grid {
-    animation: entradaFicha 1.2s ease-out forwards;
-}
+/* --- PIE DE PÁGINA LEGAL --- */
 .footer-legal-fixed {
-    position: fixed;
-    bottom: 0;
+    position: static; 
+    margin-top: auto;
     width: 100%;
     text-align: center;
     padding: 8px 0;
-    background: white;
-    border-top: 1px solid #f0f0f0;
+    background: transparent;
 }
 
 .footer-legal-fixed p { 
     font-size: 0.65rem; 
     color: #aaa; 
+}
+
+/* --- ANIMACIONES UNIFICADAS --- */
+@keyframes entradaFicha {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contenedor-principal {
+    animation: entradaFicha 0.8s ease-out forwards;
+}
+
+.cabecera-dual {
+    animation: entradaFicha 1s ease-out forwards;
+}
+
+.grid-diario {
+    animation: entradaFicha 1.2s ease-out forwards;
+}
+
+/* ==========================================================================
+   ADAPTACIÓN RESPONSIVE CORREGIDA PARA MÓVILES Y TABLETS
+   ========================================================================== */
+@media (max-width: 900px) {
+    body {
+        overflow-y: auto; /* Desbloquea scroll nativo vertical */
+        height: auto;
+        padding: 15px 5px;
+    }
+
+    .contenedor-principal {
+        height: auto; /* El contenedor crece de manera dinámica hacia abajo */
+        width: 100%;
+        border-radius: 15px;
+    }
+
+    /* Rediseño de cabecera móvil para evitar superposiciones */
+    .cabecera-dual {
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+        gap: 10px;
+        background-color: #f48e28; 
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    .pildora-roja {
+        font-size: 0.85rem;
+        padding: 5px 15px;
+        position: static; 
+    }
+
+    .banner-naranja-curvo {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        background-color: transparent;
+    }
+
+    .banner-naranja-curvo h1 {
+        margin-left: 0;
+        font-size: 1.3rem;
+        white-space: normal; 
+    }
+
+    /* Transformación del Grid a una sola columna limpia */
+    .grid-diario {
+        grid-template-columns: 1fr;
+        padding: 20px 15px;
+        gap: 25px;
+    }
+
+    .diario-contenido p {
+        font-size: 1.1rem !important;
+        line-height: 1.5;
+    }
+
+    /* Corrección del bloque crítico de relojes horizontales */
+    .bloque-relojes-horizontal {
+        flex-direction: column; /* Cambia a vertical para que no se estrujen lateralmente */
+        gap: 8px;
+        text-align: center;
+    }
+
+    .textos-laterales p {
+        margin: 4px 0;
+    }
+
+    .img-relojes {
+        width: 110px; /* Ligeramente más pequeños en pantallas móviles */
+    }
+
+    .img-niñas {
+        width: 75%;
+        margin-top: 10px;
+    }
+
+    /* Botones de control adaptados a pantallas táctiles */
+    .controles {
+        padding: 10px 15px 20px 15px;
+        gap: 10px;
+    }
+
+    .btn-nav {
+        flex: 1;
+        padding: 14px 10px;
+        font-size: 0.95rem;
+    }
 }

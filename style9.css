@@ -1,6 +1,10 @@
-/* --- CSS COMUNICACIÓN: CABECERA FINA Y ESPACIO MAXIMIZADO --- */
+/* --- CSS COMUNICACIÓN: CORREGIDO Y RESPONSIVO --- */
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
 
 body {
     background-color: #fdf6ec;
@@ -11,14 +15,15 @@ body {
     justify-content: center;
     min-height: 100vh;
     padding: 10px;
-    overflow: hidden;
+    overflow-x: hidden; /* Evita desborde horizontal */
+    overflow-y: hidden; /* Bloquea el scroll general por defecto en el proyector */
 }
 
 .contenedor-principal {
     background: white;
     width: 98%;
     max-width: 1400px; 
-    height: 88vh; /* Un poco más alto para aprovechar el espacio */
+    height: 88vh; 
     border-radius: 25px;
     position: relative;
     display: flex;
@@ -26,25 +31,28 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     animation: entradaFicha 0.8s ease-out forwards;
     overflow: hidden;
+    margin-bottom: 30px; /* Colchón de espacio por el pie legal fijo */
 }
 
-/* 1. CABECERA MÁS FINA PARA QUE EL TEXTO RESPIRE */
+/* 1. CABECERA MÁS FINA */
 .cabecera-dual {
     display: flex;
-    align-items: center; /* Alineado al centro para ahorrar altura */
-    padding: 15px 40px; /* Reducido */
+    align-items: center; 
+    padding: 15px 40px; 
     position: relative;
-    height: 80px; /* Altura controlada */
+    height: 80px; 
+    width: 100%;
 }
 
 .pildora-roja {
     background-color: #e31e24;
     color: white;
-    padding: 8px 25px; /* Más estrecha */
+    padding: 8px 25px; 
     border-radius: 30px;
     font-weight: 600;
     font-size: 1rem;
     z-index: 2;
+    flex-shrink: 0;
 }
 
 .banner-naranja-curvo {
@@ -53,30 +61,37 @@ body {
     right: 0; 
     top: 0;
     height: 100%; 
-    width: 45%; /* Un poco más estrecho para dar aire */
+    width: 45%; 
     border-bottom-left-radius: 40px;
     display: flex; 
     align-items: center; 
     padding-left: 40px; 
+    padding-right: 20px;
     color: white;
 }
 
 .banner-naranja-curvo h1 { 
     font-size: clamp(1.4rem, 3.2vh, 2rem);
     margin-left: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.icono-sol { width: clamp(30px, 4.5vh, 45px); }
+.icono-sol { 
+    width: clamp(30px, 4.5vh, 45px); 
+    flex-shrink: 0;
+}
 
-/* 2. GRID DE ACTIVIDADES CON TEXTO MÁS ARRIBA */
+/* 2. GRID DE ACTIVIDADES */
 .grid-actividades {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
     gap: clamp(20px, 4vw, 50px);
-    padding: 1vh 50px 0 50px; /* Padding superior mínimo */
+    padding: 1vh 50px 0 50px; 
     flex-grow: 1;
     overflow: hidden;
-    align-content: start; /* Empuja todo hacia arriba */
+    align-content: start; 
 }
 
 .instruccion { 
@@ -91,7 +106,7 @@ body {
     margin-bottom: 5px; 
     color: #333; 
     font-weight: 500; 
-    font-size: clamp(1rem, 2.1vh, 1.2rem); /* Letra un pelín más grande */
+    font-size: clamp(1rem, 2.1vh, 1.2rem); 
 }
 
 .respuesta-dada { 
@@ -112,7 +127,7 @@ body {
 /* 4. BLOQUE INFERIOR AJUSTADO */
 .decoracion-inferior {
     width: 100%;
-    height: clamp(90px, 16vh, 140px); /* Ligeramente más bajo */
+    height: clamp(90px, 16vh, 140px); 
     background-image: url('../imágenes/bloque.png'); 
     background-size: cover;
     background-position: top;
@@ -123,6 +138,7 @@ body {
     justify-content: space-between;
     align-items: flex-end;
     padding: 0 40px 10px 40px;
+    flex-shrink: 0;
 }
 
 .img-niñas-final {
@@ -136,29 +152,144 @@ body {
     margin-bottom: 15px;
 }
 
-/* CONTROLES */
-.controles { display: flex; gap: 15px; margin: 15px 0; }
-.btn-nav {
-    text-decoration: none; padding: 10px 35px; border-radius: 25px;
-    background: #e5e7eb; color: #4b5563; font-weight: 600;
+/* CONTROLES NAVEGACIÓN */
+.controles { 
+    display: flex; 
+    gap: 15px; 
+    margin: 15px 0; 
+    justify-content: center;
+    width: 100%;
 }
+
+.btn-nav {
+    text-decoration: none; 
+    padding: 10px 35px; 
+    border-radius: 25px;
+    background: #e5e7eb; 
+    color: #4b5563; 
+    font-weight: 600;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.btn-nav:hover { transform: scale(1.03); }
 .btn-rojo { background: #e31e24; color: white; }
 
+/* ANIMACIÓN */
 @keyframes entradaFicha {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* PIE DE PÁGINA LEGAL FIXED */
 .footer-legal-fixed {
-    position: fixed;
-    bottom: 0;
+    position: static; 
+    margin-top: auto;
     width: 100%;
     text-align: center;
     padding: 8px 0;
-    background: white;
-    border-top: 1px solid #f0f0f0;
+    background: transparent;
 }
 
 .footer-legal-fixed p { 
     font-size: 0.65rem; 
     color: #aaa; 
+}
+
+/* ==========================================================================
+   ADAPTACIÓN RESPONSIVE CRÍTICA PARA MÓVILES Y TABLETS
+   ========================================================================== */
+@media (max-width: 900px) {
+    body {
+        overflow-y: auto; /* Forzamos scroll vertical libre en móviles */
+        height: auto;
+        padding: 10px 5px;
+    }
+
+    .contenedor-principal {
+        height: auto; /* Permitimos que el contenedor se estire verticalmente */
+        width: 100%;
+        border-radius: 15px;
+    }
+
+    /* Transformamos la cabecera absoluta en un bloque compacto */
+    .cabecera-dual {
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+        gap: 10px;
+        background-color: #f48e28; 
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    .pildora-roja {
+        font-size: 0.85rem;
+        padding: 5px 15px;
+    }
+
+    .banner-naranja-curvo {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        background-color: transparent;
+    }
+
+    .banner-naranja-curvo h1 {
+        margin-left: 0;
+        font-size: 1.2rem;
+        white-space: normal; 
+    }
+
+    .icono-sol {
+        display: none; /* Quitamos el adorno para limpiar espacio en móviles */
+    }
+
+    /* Modificación del Grid de preguntas a una sola columna */
+    .grid-actividades {
+        grid-template-columns: 1fr;
+        padding: 20px 15px;
+        gap: 30px;
+        overflow: visible;
+    }
+
+    .pregunta-bloque p {
+        font-size: 1.1rem !important;
+        line-height: 1.4;
+    }
+
+    /* Líneas de cuaderno ampliadas para uso táctil del alumno */
+    .linea-respuesta {
+        height: 35px; 
+        margin-bottom: 12px;
+    }
+
+    /* Adaptación del pie decorativo para evitar colapsos visuales */
+    .decoracion-inferior {
+        height: 80px; /* Reducido sustancialmente */
+        background-image: none; /* Quitamos el fondo pesado en móvil */
+        background-color: #fafafa;
+        border-top: 1px solid #eee;
+        padding: 10px 15px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .img-niñas-final, .img-relojes-final {
+        display: none; /* Ocultamos las ilustraciones decorativas abajo para priorizar la lectura */
+    }
+
+    /* Botones adaptados para interacciones con el dedo */
+    .controles {
+        padding: 10px 15px 20px 15px;
+        gap: 10px;
+    }
+
+    .btn-nav {
+        flex: 1;
+        padding: 14px 10px;
+        font-size: 0.95rem;
+    }
 }

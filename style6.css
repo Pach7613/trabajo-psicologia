@@ -1,4 +1,4 @@
-/* --- CSS FICHA OPTIMIZADA: SIN MASCOTA Y LOGO PEQUEÑO --- */
+/* --- CSS FICHA OPTIMIZADA: VERSIÓN RESPONSIVE COMPLETA --- */
 
 * {
     box-sizing: border-box;
@@ -13,19 +13,22 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
+    padding: 10px;
+    overflow-x: hidden; /* Evita que el scroll baje de lado */
+    overflow-y: hidden; /* Sin scroll por defecto en PC/Proyector */
 }
 
 .contenedor-principal {
     background: white;
     width: 96%;
     max-width: 1300px;
-    height: 84vh; /* Ajustado para que el contenido respire */
+    height: 84vh; 
     border-radius: 20px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
     display: flex;
     flex-direction: column;
+    margin-bottom: 30px; /* Separación de seguridad para el pie de página */
 }
 
 /* --- CABECERA --- */
@@ -34,6 +37,7 @@ body {
     align-items: center;
     height: 80px;
     position: relative;
+    width: 100%;
 }
 
 .pildora-roja {
@@ -45,6 +49,7 @@ body {
     font-size: 1rem;
     margin-left: 40px;
     z-index: 2;
+    flex-shrink: 0;
 }
 
 .banner-naranja-curvo {
@@ -58,32 +63,37 @@ body {
     display: flex;
     align-items: center;
     padding-left: 40px;
+    padding-right: 20px;
     color: white;
 }
 
-/* LOGO DEL TÍTULO: AHORA MÁS PEQUEÑO */
 .icono-cabecera {
-    width: 45px; /* Tamaño reducido para que no sea gigante */
+    width: 45px; 
     height: auto;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    flex-shrink: 0;
 }
-/* Esto pinta en rojo tanto el número como el texto destacado */
+
 .titulo-actividad .num,
 .titulo-actividad .rojo {
     color: #e31e24;
-    font-weight: 700; /* Para asegurarte de que ambos tengan el mismo grosor */
-}
-.banner-naranja-curvo h1 {
-    font-size: clamp(1.5rem, 3vh, 2.2rem);
-    margin-left: 15px;
+    font-weight: 700; 
 }
 
-/* --- CONTENIDO DISTRIBUIDO PARA RELLENAR ESPACIO --- */
+.banner-naranja-curvo h1 {
+    font-size: clamp(1.3rem, 3vh, 2.2rem);
+    margin-left: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* --- CONTENIDO DISTRIBUIDO --- */
 .grid-contenido {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3vw;
-    padding: 3vh 5vw; /* Más padding para centrar el contenido */
+    padding: 3vh 5vw; 
     flex-grow: 1;
     align-items: start;
 }
@@ -91,10 +101,9 @@ body {
 .bloque-izquierda, .bloque-derecha {
     display: flex;
     flex-direction: column;
-    gap: 2vh; /* Espacio extra entre preguntas para rellenar */
+    gap: 2vh; 
 }
 
-/* ICONOS DE ACTIVIDAD PEQUEÑOS */
 .icono-mini {
     width: 28px;
     height: auto;
@@ -116,6 +125,7 @@ body {
     font-weight: 700;
     font-size: 1rem;
     margin-bottom: 8px;
+    line-height: 1.3;
 }
 
 .check-item {
@@ -125,9 +135,9 @@ body {
     padding-left: 28px;
 }
 
-/* --- PAUTAS MÁS LARGAS Y ESPACIADAS --- */
+/* --- PAUTAS --- */
 .linea-pauta {
-    height: 35px; /* Un pelín más altas */
+    height: 35px; 
     border-bottom: 1.5px solid #a5c7e9;
     margin-bottom: 8px;
 }
@@ -136,7 +146,8 @@ body {
 .flex-unir {
     display: flex;
     justify-content: space-between;
-    margin: 2.5vh 0; /* Más margen para ocupar espacio */
+    margin: 2.5vh 0; 
+    gap: 20px;
 }
 
 .cajas-izq, .cajas-der {
@@ -151,16 +162,18 @@ body {
     border-radius: 8px;
     font-size: 1rem;
     text-align: center;
-    min-width: 160px;
+    min-width: 140px;
 }
 
 /* --- BOTONES DE ABAJO --- */
 .controles-fijos {
     height: 10vh;
+    min-height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px;
+    padding: 0 20px;
 }
 
 .btn-nav {
@@ -169,28 +182,125 @@ body {
     border-radius: 30px;
     font-weight: 700;
     font-size: 1rem;
+    text-align: center;
+    transition: transform 0.2s ease;
 }
 
+.btn-nav:hover { transform: scale(1.03); }
 .btn-volver { background: #e5e7eb; color: #4b5563; }
 .btn-inicio { background: #d91a1d; color: white; }
 
-/* Ajuste fino para pantallas pequeñas */
+/* Ajuste fino pantallas bajas de PC */
 @media (max-height: 750px) {
     .linea-pauta { height: 28px; }
     .grid-contenido { padding: 2vh 4vw; }
     .cabecera-dual { height: 65px; }
 }
+
+/* PIE DE PÁGINA LEGAL */
 .footer-legal-fixed {
-    position: fixed;
-    bottom: 0;
+    position: static; 
+    margin-top: auto;
     width: 100%;
     text-align: center;
     padding: 8px 0;
-    background: white;
-    border-top: 1px solid #f0f0f0;
+    background: transparent;
 }
 
 .footer-legal-fixed p { 
     font-size: 0.65rem; 
     color: #aaa; 
+}
+
+/* ==========================================================================
+   MÓVILES Y TABLETS: AQUÍ OCURRE LA MAGIA RESPONSIVE
+   ========================================================================== */
+@media (max-width: 880px) {
+    body {
+        overflow-y: auto; /* Activamos el scroll vertical nativo */
+        height: auto;
+        padding: 10px 5px;
+    }
+
+    .contenedor-principal {
+        height: auto; /* Eliminamos el tope rígido de altura */
+        width: 100%;
+        border-radius: 15px;
+    }
+
+    /* Cabecera apilada para móviles sin cortes raros de fondo */
+    .cabecera-dual {
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+        gap: 10px;
+        background-color: #f48e28; 
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    .pildora-roja {
+        margin-left: 0;
+        font-size: 0.85rem;
+        padding: 4px 15px;
+    }
+
+    .banner-naranja-curvo {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        background-color: transparent;
+    }
+
+    .banner-naranja-curvo h1 {
+        margin-left: 0;
+        font-size: 1.2rem;
+        white-space: normal; 
+    }
+
+    .icono-cabecera {
+        display: none; /* Quitamos el icono secundario en móvil para limpiar interfaz */
+    }
+
+    /* El grid pasa a verse a una sola columna estirada hacia abajo */
+    .grid-contenido {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 20px 15px;
+    }
+
+    .bloque-izquierda, .bloque-derecha {
+        gap: 20px;
+    }
+
+    .bloque-pregunta p {
+        font-size: 1.05rem !important;
+    }
+
+    /* Controlamos que la sección unir no rompa márgenes */
+    .flex-unir {
+        justify-content: space-around;
+    }
+
+    .caja {
+        min-width: 110px;
+        font-size: 0.9rem;
+        padding: 8px 10px;
+    }
+
+    /* Botones simétricos para pulsar cómodamente con el dedo */
+    .controles-fijos {
+        height: auto;
+        padding: 20px 15px;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .btn-nav {
+        flex: 1;
+        padding: 12px 10px;
+        font-size: 0.95rem;
+    }
 }

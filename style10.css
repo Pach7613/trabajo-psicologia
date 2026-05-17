@@ -1,5 +1,10 @@
-/* Reutilizamos la base de la página 9 */
-* { box-sizing: border-box; margin: 0; padding: 0; }
+/* --- CSS PAGINA 9: DIÁLOGOS Y ESCENA RESPONSIVE --- */
+
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
 
 body {
     background-color: #fdf6ec;
@@ -8,8 +13,10 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
+    padding: 10px;
+    overflow-x: hidden; /* Bloquea scrolls laterales rebeldes */
+    overflow-y: hidden; /* Sin scroll en ordenadores y proyector por defecto */
 }
 
 .contenedor-principal {
@@ -22,42 +29,96 @@ body {
     display: flex;
     flex-direction: column;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    margin-bottom: 30px; /* Margen de seguridad para el pie legal fijo */
 }
 
-/* Cabecera idéntica */
-.cabecera-dual { height: 90px; position: relative; }
+/* --- CABECERA AJUSTADA --- */
+.cabecera-dual { 
+    display: flex;
+    padding: 20px 40px;
+    position: relative;
+    height: 120px;
+    width: 100%;
+    align-items: center;
+}
+
 .pildora-roja {
-    background-color: #e31e24; color: white; padding: 10px 25px;
-    border-radius: 0 0 20px 20px; font-weight: 600; position: absolute; left: 50px;
-}
-.banner-naranja-curvo {
-    background-color: #f48e28; position: absolute; right: 0; top: 0;
-    height: 80px; width: 55%; border-bottom-left-radius: 50px;
-    display: flex; align-items: center; padding-left: 40px; color: white;
+    background-color: #e31e24; 
+    color: white; 
+    padding: 12px 25px;
+    border-radius: 30px; 
+    font-weight: 600; 
+    z-index: 2;
+    height: fit-content;
+    flex-shrink: 0;
 }
 
-/* Cuerpo central */
+.banner-naranja-curvo {
+    background-color: #f48e28; 
+    position: absolute; 
+    right: 0; 
+    top: 0;
+    height: 80px; 
+    width: 55%; 
+    border-bottom-left-radius: 50px;
+    display: flex; 
+    align-items: center; 
+    padding-left: 40px; 
+    padding-right: 20px;
+    color: white;
+}
+
+.banner-naranja-curvo h1 {
+    font-size: clamp(1.4rem, 3.2vh, 2rem);
+    margin-left: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* --- CUERPO CENTRAL (Escritorio / Proyector) --- */
 .contenido-ejercicio {
     display: flex;
-    padding: 30px 50px;
+    padding: 10px 50px 30px 50px;
     flex-grow: 1;
-    gap: 40px; /* Más espacio entre texto e imágenes */
+    gap: 40px; 
     position: relative;
 }
 
 .zona-escritura { 
     width: 45%; 
-    z-index: 5; /* Para que el texto quede por encima del niño si se solapan */
+    z-index: 5; 
 }
-.instruccion { font-weight: 700; font-size: 1.1rem; margin-bottom: 20px; }
+
+.instruccion { 
+    font-weight: 700; 
+    font-size: 1.1rem; 
+    margin-bottom: 20px; 
+    color: #000;
+}
+
 .numero-rojo { color: #e31e24; }
 
 /* Diálogos con avatares */
-.linea-dialogo { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 15px; }
-.mini-avatar { width: 40px; height: auto; }
+.linea-dialogo { 
+    display: flex; 
+    align-items: flex-start; 
+    gap: 12px; 
+    margin-bottom: 15px; 
+}
+
+.mini-avatar { 
+    width: 40px; 
+    height: auto; 
+    flex-shrink: 0;
+}
+
 .pauta-doble { flex-grow: 1; }
+
 .linea-respuesta { 
-    height: 25px; border-bottom: 1px solid #a5b4fc; margin-bottom: 5px; 
+    height: 25px; 
+    border-bottom: 1px solid #a5b4fc; 
+    margin-bottom: 5px; 
 }
 
 /* Zona de imágenes derecha */
@@ -65,19 +126,25 @@ body {
     width: 55%;
     position: relative;
     display: flex;
-    justify-content: flex-end; /* Empuja el cuadro azul a la derecha */
+    justify-content: flex-end; 
     align-items: center;
 }
 
 .cuadro-escena-azul {
-    width: 90%; /* Ajustado para que no ocupe todo el ancho */
+    width: 90%; 
     height: 300px;
     border-radius: 30px;
     overflow: hidden;
-    border: 12px solid #d4ecec; /* Borde más grueso como en la foto */
+    border: 12px solid #d4ecec; 
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    position: relative;
 }
-.img-escena { width: 100%; height: 100%; object-fit: cover; }
+
+.img-escena { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
 
 .img-niño-de-pie {
     position: absolute;
@@ -85,13 +152,14 @@ body {
     left: -40px;
     height: 280px;
     width: auto;
+    z-index: 6;
 }
 
-/* Decoración inferior de la página 9 */
+/* --- DECORACIÓN INFERIOR PÁGINA 9 --- */
 .decoracion-inferior {
     width: 100%;
     height: 140px;
-    background-image: url('../imágenes/bloque.png'); /* Cuadrícula */
+    background-image: url('../imágenes/bloque.png'); 
     background-size: cover;
     display: flex;
     justify-content: space-between;
@@ -100,120 +168,175 @@ body {
     margin-top: auto;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
+    flex-shrink: 0;
 }
 
 .img-niñas-base { width: 200px; height: auto; }
 .img-relojes-base { width: 80px; height: auto; margin-bottom: 10px; }
-/* Botones */
-.controles { display: flex; gap: 15px; margin-top: 15px; }
-.btn-nav {
-    text-decoration: none; padding: 10px 35px; border-radius: 25px;
-    background: #e5e7eb; color: #4b5563; font-weight: 600;
+
+/* Botones de navegación */
+.controles { 
+    display: flex; 
+    gap: 15px; 
+    margin-top: 15px; 
+    justify-content: center;
+    width: 100%;
 }
+
+.btn-nav {
+    text-decoration: none; 
+    padding: 10px 35px; 
+    border-radius: 25px;
+    background: #e5e7eb; 
+    color: #4b5563; 
+    font-weight: 600;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.btn-nav:hover { transform: scale(1.03); }
 .btn-rojo { background: #e31e24; color: white; }
 
-/* Cabecera idéntica a la foto */
-.cabecera-dual {
-    display: flex;
-    padding: 20px 40px;
-    position: relative;
-    height: 120px;
-}
-
-.pildora-roja {
-    background-color: #e31e24;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 30px;
-    font-weight: 600;
-    z-index: 2;
-    height: fit-content;
-}
-/* --- ANIMACIÓN DE ENTRADA --- */
-
-/* Definimos la animación */
-@keyframes entradaFicha {
-    from {
-        opacity: 0;
-        transform: translateY(20px); /* Empieza un poco más abajo */
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0); /* Termina en su sitio */
-    }
-}
-/* RESPONSIVE */
-@media (max-width: 1024px) {
-    .lectura-container {
-        max-height: none; /* En tablets/móviles dejamos que fluya normal */
-    }
-    
-    .contenido-lectura {
-        grid-template-columns: 1fr;
-    }
-    
-    .img-principal {
-        max-height: 400px; /* Tamaño controlado en móvil */
-    }
-}
-@media (max-width: 900px) {
-    .contenido-grid {
-        grid-template-columns: 1fr; /* Una columna en tablets/móviles */
-    }
-    
-    .ficha-container {
-        padding: 20px;
-    }
-}
-
-@media (max-width: 500px) {
-    .columna-fotos {
-        grid-template-columns: 1fr; /* En móviles muy pequeños, fotos una debajo de otra para que se vean bien */
-    }
-    
-    .titulo-ficha {
-        font-size: 1.8rem;
-    }
-}
-/* --- ANIMACIÓN DE ENTRADA (Copia esto) --- */
-
-/* 1. Definimos cómo se mueve la animación */
-@keyframes entradaFicha {
-    from {
-        opacity: 0;
-        transform: translateY(20px); /* Empieza un poco más abajo y transparente */
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0); /* Termina en su posición original y visible */
-    }
-}
-
-/* 2. Aplicamos la animación a los elementos que quieras */
-/* Se suele poner en el contenedor principal para que toda la ficha suba suavemente */
-.contenedor-principal, .ficha-container {
-    animation: entradaFicha 0.8s ease-out forwards;
-}
-
-/* Opcional: Si quieres el efecto de "cascada", aplica tiempos diferentes */
-.titulo-ficha, .cabecera-dual {
-    animation: entradaFicha 1s ease-out forwards;
-}
-
-.contenido-ejercicio, .contenido-grid {
-    animation: entradaFicha 1.2s ease-out forwards;
-}
+/* --- PIE DE PÁGINA LEGAL FIXED --- */
 .footer-legal-fixed {
-    position: fixed;
-    bottom: 0;
+    position: static; 
+    margin-top: auto;
     width: 100%;
     text-align: center;
     padding: 8px 0;
-    background: white;
-    border-top: 1px solid #f0f0f0;
+    background: transparent;
 }
 
 .footer-legal-fixed p { 
     font-size: 0.65rem; 
     color: #aaa; 
+}
+
+/* --- ANIMACIONES --- */
+@keyframes entradaFicha {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.contenedor-principal { animation: entradaFicha 0.8s ease-out forwards; }
+.cabecera-dual { animation: entradaFicha 1s ease-out forwards; }
+.contenido-ejercicio { animation: entradaFicha 1.2s ease-out forwards; }
+
+
+/* ==========================================================================
+   ADAPTACIÓN RESPONSIVE REAL PARA MÓVILES Y TABLETS
+   ========================================================================== */
+@media (max-width: 900px) {
+    body {
+        overflow-y: auto; /* Forzamos scroll general fluido en móvil */
+        height: auto;
+        padding: 15px 5px;
+    }
+
+    .contenedor-principal {
+        height: auto; /* El contenedor se adapta dinámicamente hacia abajo */
+        width: 100%;
+        border-radius: 15px;
+    }
+
+    /* Transformación de la cabecera absoluta a bloque sólido móvil */
+    .cabecera-dual {
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+        gap: 10px;
+        background-color: #f48e28; 
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    .pildora-roja {
+        font-size: 0.85rem;
+        padding: 5px 15px;
+        position: static; 
+    }
+
+    .banner-naranja-curvo {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        background-color: transparent;
+    }
+
+    .banner-naranja-curvo h1 {
+        margin-left: 0;
+        font-size: 1.2rem;
+        white-space: normal; 
+    }
+
+    /* Rompemos la disposición en paralelo a una sola columna limpia */
+    .contenido-ejercicio {
+        flex-direction: column;
+        padding: 20px 15px;
+        gap: 30px;
+    }
+
+    .zona-escritura {
+        width: 100%;
+    }
+
+    .instruccion {
+        font-size: 1.1rem !important;
+        line-height: 1.4;
+    }
+
+    /* Líneas de escritura ampliadas en móvil para uso táctil */
+    .linea-respuesta {
+        height: 35px;
+        margin-bottom: 8px;
+    }
+
+    .zona-imagenes {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    /* Reajuste del marco de la escena para que sea responsive */
+    .cuadro-escena-azul {
+        width: 100%;
+        height: 230px; /* Altura controlada para pantallas móviles */
+        border: 8px solid #d4ecec; /* Borde un poco más fino acorde al tamaño */
+    }
+
+    /* Corregimos el posicionamiento del niño para que no rompa el layout */
+    .img-niño-de-pie {
+        height: 180px; /* Reducido para que no eclipse la ilustración de la escena */
+        left: -15px;
+        bottom: -10px;
+    }
+
+    /* Ajuste de la decoración inferior para limpiar el espacio de lectura */
+    .decoracion-inferior {
+        height: 70px;
+        background-image: none; /* Eliminamos el fondo de Canva */
+        background-color: #fafafa;
+        border-top: 1px solid #eee;
+        padding: 10px 15px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .img-niñas-base, .img-relojes-base {
+        display: none; /* Ocultamos las ilustraciones base decorativas */
+    }
+
+    /* Botones de navegación simétricos y táctiles */
+    .controles {
+        padding: 10px 15px 20px 15px;
+        gap: 10px;
+    }
+
+    .btn-nav {
+        flex: 1;
+        padding: 14px 10px;
+        font-size: 0.95rem;
+    }
 }
