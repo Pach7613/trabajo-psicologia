@@ -1,4 +1,4 @@
-/* --- CSS VOCABULARIO: BANNER FINO Y TEXTO AMPLIO --- */
+/* --- CSS VOCABULARIO: VERSION RESPONSIVE ADAPTABLE --- */
 
 * {
     box-sizing: border-box;
@@ -15,39 +15,42 @@ body {
     justify-content: center;
     min-height: 100vh;
     padding: 10px;
-    overflow: hidden;
+    overflow-x: hidden; /* Evitamos roturas por desborde horizontal */
+    overflow-y: hidden; /* Sin scroll por defecto en ordenadores y proyector */
 }
 
 .contenedor-principal {
     background: white;
-    width: 98%; /* Más ancho para el proyector */
+    width: 98%; 
     max-width: 1400px; 
     height: 85vh; 
     border-radius: 25px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     animation: entradaFicha 0.8s ease-out forwards;
+    margin-bottom: 30px; /* Espacio de seguridad por el pie legal */
 }
 
 /* 1. CABECERA CON BANNER MÁS FINO */
 .cabecera-dual {
     display: flex;
-    align-items: center; /* Alineado al centro para ahorrar altura */
-    padding: 15px 40px; /* Reducido */
+    align-items: center; 
+    padding: 15px 40px; 
     position: relative;
-    height: 80px; /* Altura controlada */
+    height: 80px; 
+    width: 100%;
 }
 
 .pildora-roja {
     background-color: #e31e24;
     color: white;
-    padding: 8px 25px; /* Más estrecha */
+    padding: 8px 25px; 
     border-radius: 30px;
     font-weight: 600;
     font-size: 1rem;
     z-index: 2;
+    flex-shrink: 0;
 }
 
 .banner-naranja-curvo {
@@ -55,22 +58,27 @@ body {
     position: absolute;
     right: 0;
     top: 0;
-    height: 100%; /* Ahora es más fino porque depende de .cabecera-dual */
+    height: 100%; 
     width: 55%;
     border-bottom-left-radius: 40px;
     display: flex;
     align-items: center;
     padding-left: 50px;
+    padding-right: 20px;
     color: white;
 }
 
 .banner-naranja-curvo h1 { 
     font-size: clamp(1.3rem, 3vh, 2rem); 
     margin-left: 15px; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .icono-sol { 
     width: clamp(25px, 5vh, 40px); 
+    flex-shrink: 0;
 }
 
 /* 2. CONTENIDO MÁS ARRIBA Y ESPACIADO */
@@ -79,19 +87,19 @@ body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Alineado arriba */
+    justify-content: flex-start; 
     margin-top: 10px;
 }
 
 .naranja-texto { 
     color: #f48e28; 
-    font-size: clamp(1.6rem, 3.5vh, 2.2rem); /* Título más grande */
+    font-size: clamp(1.6rem, 3.5vh, 2.2rem); 
     margin-bottom: 10px; 
 }
 
 .instruccion { 
     margin-bottom: clamp(15px, 3vh, 30px); 
-    font-size: clamp(1.1rem, 2.3vh, 1.4rem); /* Instrucción más legible */
+    font-size: clamp(1.1rem, 2.3vh, 1.4rem); 
     color: #333; 
     line-height: 1.3; 
 }
@@ -100,13 +108,14 @@ body {
 .lista-ejercicios { 
     display: flex; 
     flex-direction: column; 
-    gap: clamp(15px, 3vh, 35px); /* Más separación entre filas */
+    gap: clamp(15px, 3vh, 35px); 
 }
 
 .fila-vocabulario { 
     display: flex; 
     align-items: center; 
     justify-content: space-between; 
+    width: 100%;
 }
 
 .flecha-canva {
@@ -121,19 +130,20 @@ body {
     display: block;
     padding: clamp(10px, 2vh, 18px) 25px; 
     clip-path: polygon(0% 0%, 92.5% 0%, 99.5% 50%, 92.5% 100%, 0% 100%);
-    font-size: clamp(1.1rem, 2.2vh, 1.4rem); /* Frases más grandes */
+    font-size: clamp(1.1rem, 2.2vh, 1.4rem); 
 }
 
 .opciones {
     width: 33%;
     display: flex;
     justify-content: space-around;
+    gap: 10px;
 }
 
 .palabra {
-    font-size: clamp(1.1rem, 2.4vh, 1.5rem); /* Opciones mucho más grandes */
+    font-size: clamp(1.1rem, 2.4vh, 1.5rem); 
     color: #444;
-    font-weight: 700; /* Negrita para que se vea mejor en el proyector */
+    font-weight: 700; 
 }
 
 /* BOTONES */
@@ -141,6 +151,8 @@ body {
     display: flex; 
     gap: 15px; 
     margin: 15px 0; 
+    justify-content: center;
+    width: 100%;
 }
 
 .btn-nav {
@@ -150,6 +162,12 @@ body {
     background: #e5e7eb;
     color: #4b5563;
     font-weight: 600;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.btn-nav:hover {
+    transform: scale(1.03);
 }
 
 .btn-rojo { background: #e31e24; color: white; }
@@ -158,17 +176,129 @@ body {
     from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* PIE DE PÁGINA LEGAL */
 .footer-legal-fixed {
-    position: fixed;
-    bottom: 0;
+    position: static; 
+    margin-top: auto;
     width: 100%;
     text-align: center;
     padding: 8px 0;
-    background: white;
-    border-top: 1px solid #f0f0f0;
+    background: transparent;
 }
 
 .footer-legal-fixed p { 
     font-size: 0.65rem; 
     color: #aaa; 
+}
+
+/* ==========================================================================
+   ADAPTACIÓN RESPONSIVE TOTAL PARA DISPOSITIVOS MÓVILES Y TABLETS
+   ========================================================================== */
+@media (max-width: 900px) {
+    body {
+        overflow-y: auto; /* Desbloqueamos el scroll vertical en móviles */
+        height: auto;
+        padding: 10px 5px;
+    }
+
+    .contenedor-principal {
+        height: auto; /* Forzamos crecimiento vertical libre */
+        width: 100%;
+        border-radius: 15px;
+    }
+
+    /* Transformamos la cabecera para que entren los datos traducidos */
+    .cabecera-dual {
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+        gap: 10px;
+        background-color: #f48e28; /* Capa naranja continua */
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    .pildora-roja {
+        font-size: 0.85rem;
+        padding: 5px 15px;
+    }
+
+    .banner-naranja-curvo {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        background-color: transparent;
+    }
+
+    .banner-naranja-curvo h1 {
+        margin-left: 0;
+        font-size: 1.2rem;
+        white-space: normal; 
+    }
+
+    .icono-sol {
+        display: none; /* Quitamos el sol decorativo en móviles */
+    }
+
+    .seccion-vocabulario {
+        padding: 20px 15px;
+    }
+
+    /* Modificación estructural del juego de vocabulario */
+    .fila-vocabulario {
+        flex-direction: column; /* Coloca la frase arriba y los botones abajo */
+        align-items: flex-start;
+        gap: 12px;
+        background: #fafafa;
+        padding: 12px;
+        border-radius: 12px;
+        border: 1px solid #eee;
+    }
+
+    .flecha-canva {
+        width: 100%; /* La flecha toma todo el ancho */
+        clip-path: none; /* Quitamos el clip-path en móvil para que el texto respire limpio */
+        background-color: transparent;
+    }
+
+    .flecha-canva span {
+        clip-path: none;
+        padding: 10px;
+        background-color: #fdf6ec;
+        border-left: 4px solid #f48e28; /* Cambiamos el diseño a un bloque de cita elegante */
+        border-radius: 4px;
+        font-size: 1.05rem !important;
+    }
+
+    .opciones {
+        width: 100%; /* Las palabras alternativas se expanden abajo */
+        justify-content: flex-start;
+        gap: 25px;
+        padding-left: 10px;
+    }
+
+    .palabra {
+        font-size: 1.1rem !important;
+        background: white;
+        padding: 6px 14px;
+        border: 2px solid #e5e7eb;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+
+    /* Navegación inferior adaptable */
+    .controles {
+        padding: 10px 15px 20px 15px;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .btn-nav {
+        flex: 1;
+        padding: 14px 10px;
+        font-size: 0.95rem;
+    }
 }

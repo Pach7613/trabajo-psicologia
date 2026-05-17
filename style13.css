@@ -15,7 +15,8 @@ body {
     justify-content: center;
     min-height: 100vh;
     padding: 10px;
-    overflow: hidden; /* Evita scroll en el body principal */
+    overflow-x: hidden; /* Bloquea scrolls laterales rebeldes */
+    overflow-y: hidden; /* Sin scroll en el body por defecto para el proyector */
 }
 
 /* Contenedor tipo ficha blanca */
@@ -23,13 +24,14 @@ body {
     background: white;
     width: 98%;
     max-width: 1400px;
-    height: 85vh; /* Ajustado para dejar espacio a los botones */
+    height: 85vh; 
     border-radius: 25px;
     position: relative;
     display: flex;
     flex-direction: column;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     animation: entradaFicha 0.8s ease-out forwards;
+    margin-bottom: 30px; /* Margen de seguridad para el pie legal fijo */
 }
 
 /* --- CABECERA --- */
@@ -40,6 +42,7 @@ body {
     position: relative;
     height: 80px;
     flex-shrink: 0;
+    width: 100%;
 }
 
 .pildora-naranja {                                         
@@ -51,6 +54,7 @@ body {
     font-size: clamp(0.9rem, 2vh, 1.1rem);
     z-index: 2;
     box-shadow: 0 4px 10px rgba(244, 142, 40, 0.2);
+    flex-shrink: 0;
 }
 
 .banner-naranja-curvo {
@@ -64,32 +68,37 @@ body {
     display: flex; 
     align-items: center; 
     padding-left: 50px; 
+    padding-right: 20px;
     color: white;
 }
 
 .banner-naranja-curvo h1 {
-    font-size: clamp(1.5rem, 4vh, 2.2rem);
+    font-size: clamp(1.3rem, 4vh, 2.2rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Evita roturas si el título traducido es largo */
 }
 
 /* --- CUERPO DE LECTURA --- */
 .contenido-actividades {
     display: flex;
-    flex-direction: row; /* Elementos uno al lado del otro */
-    align-items: center; /* Centra verticalmente el contenido */
+    flex-direction: row; 
+    align-items: center; 
     justify-content: space-between;
     padding: 2vh 4vw;
     flex-grow: 1;
     gap: 2vw;
-    overflow: hidden; /* Evita que el contenido ensucie la ficha */
+    overflow: hidden; 
 }
 
 /* Columna Izquierda: Texto */
 .columna-lectura { 
     width: 55%; 
-    max-height: 100%; /* No puede ser más alta que el contenedor */
-    overflow-y: auto; /* Si el texto es muy largo, genera su propio scroll */
-    padding-right: 10px;
+    max-height: 100%; 
+    overflow-y: auto; /* Scroll interno controlado solo para PC/Proyector */
+    padding-right: 15px;
 }
+
 .instruccion { 
     font-weight: 700; 
     font-size: clamp(1.1rem, 2.5vh, 1.4rem); 
@@ -106,7 +115,7 @@ body {
 .bloque-dialogo {
     display: flex;
     flex-direction: column;
-    gap: 1.2vh; /* Espaciado dinámico entre líneas */
+    gap: 1.2vh; 
 }
 
 .bloque-dialogo p {
@@ -123,13 +132,12 @@ body {
 /* Columna Derecha: Ilustración */
 .columna-ilustracion { 
     width: 40%; 
-    height: 100%; /* Ocupa todo el alto disponible */
+    height: 100%; 
     display: flex; 
     justify-content: center; 
     align-items: center;
 }
 
-/* LA CLAVE: El ajuste de la imagen de image_3b9fd4.png */
 .contenedor-imagen {
     width: 100%;
     height: 100%;
@@ -139,9 +147,9 @@ body {
 }
 
 .contenedor-imagen img {
-    max-width: 100%;  /* No se sale de ancho */
-    max-height: 70vh; /* IMPORTANTE: No permite que la imagen sea más alta que la pantalla del portátil */
-    object-fit: contain; /* Mantiene la proporción sin deformar ni cortar */
+    max-width: 100%;  
+    max-height: 70vh; 
+    object-fit: contain; 
 }
 
 /* --- BOTONES DE NAVEGACIÓN --- */
@@ -151,6 +159,7 @@ body {
     gap: 15px; 
     padding: 15px 0;
     flex-shrink: 0;
+    width: 100%;
 }
 
 .btn-nav {
@@ -162,6 +171,7 @@ body {
     font-weight: 600;
     transition: all 0.3s ease;
     font-size: 1rem;
+    text-align: center;
 }
 
 .btn-rojo { 
@@ -174,36 +184,128 @@ body {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-/* --- RESPONSIVIDAD PARA MÓVILES/TABLETS VERTICALES --- */
-@media (max-height: 700px), (max-width: 1024px) {
-    .contenedor-principal {
-        height: 95vh; /* Le damos un poco más de margen en pantallas pequeñas */
-    }
-    
-    .contenedor-imagen img {
-        max-height: 60vh; /* Reducimos la imagen un poco más para que quepa el texto */
-    }
-
-    .instruccion {
-        font-size: 1rem; /* Reducimos un poco el enunciado */
-    }
-}
-
-@keyframes entradaFicha {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+/* --- PIE DE PÁGINA LEGAL --- */
 .footer-legal-fixed {
-    position: fixed;
-    bottom: 0;
+    position: static; /* Evita flotar sobre los botones de navegación en móvil */
+    margin-top: auto;
     width: 100%;
     text-align: center;
     padding: 8px 0;
-    background: white;
-    border-top: 1px solid #f0f0f0;
+    background: transparent;
 }
 
 .footer-legal-fixed p { 
     font-size: 0.65rem; 
     color: #aaa; 
+}
+
+/* --- ANIMACIÓN --- */
+@keyframes entradaFicha {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* AJUSTES PANTALLAS BAJAS */
+@media (max-height: 700px) {
+    .contenedor-principal { height: 95vh; }
+    .contenedor-imagen img { max-height: 60vh; }
+    .instruccion { font-size: 1rem; }
+}
+
+/* ==========================================================================
+   ADAPTACIÓN RESPONSIVE TOTAL PARA DISPOSITIVOS MÓVILES Y TABLETS
+   ========================================================================== */
+@media (max-width: 900px) {
+    body {
+        overflow-y: auto; /* Forzamos scroll nativo general en móvil */
+        height: auto;
+        padding: 15px 10px;
+    }
+
+    .contenedor-principal {
+        height: auto; /* Eliminamos el tope rígido de altura */
+        width: 100%;
+        border-radius: 15px;
+        margin-bottom: 10px;
+    }
+
+    /* Transformación de la cabecera móvil */
+    .cabecera-dual {
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+        gap: 10px;
+        background-color: #f48e28; /* Bloque unificado de color */
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    .pildora-naranja {
+        font-size: 0.85rem;
+        padding: 5px 15px;
+        background-color: #e31e24; /* Contraste inverso muy chulo para móvil */
+        box-shadow: none;
+    }
+
+    .banner-naranja-curvo {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        background-color: transparent;
+    }
+
+    .banner-naranja-curvo h1 {
+        margin-left: 0;
+        font-size: 1.3rem;
+        white-space: normal; /* Permitimos multilínea en pantallas estrechas */
+    }
+
+    /* Rompemos la disposición horizontal */
+    .contenido-actividades {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 15px;
+        gap: 25px;
+        overflow: visible; /* Aseguramos que nada se mutile */
+    }
+
+    .columna-lectura {
+        width: 100%;
+        max-height: none; /* Adios al scroll interno engorroso */
+        overflow-y: visible;
+        padding-right: 0;
+    }
+
+    .instruccion {
+        font-size: 1.15rem !important;
+    }
+
+    .bloque-dialogo p {
+        font-size: 1.1rem !important; /* Tamaño idóneo para lectura táctil */
+        line-height: 1.5;
+    }
+
+    .columna-ilustracion {
+        width: 100%;
+        height: auto;
+    }
+
+    .contenedor-imagen img {
+        max-height: 320px; /* Tamaño controlado de la ilustración en móvil */
+        margin: 0 auto;
+    }
+
+    /* Botones adaptados a la base táctil */
+    .controles {
+        padding: 10px 15px 20px 15px;
+        gap: 10px;
+    }
+
+    .btn-nav {
+        flex: 1;
+        padding: 14px 10px;
+        font-size: 0.95rem;
+    }
 }

@@ -1,4 +1,4 @@
-/* --- CSS CORREGIDO: SIN SCROLL PARA PORTÁTIL --- */
+/* --- CSS CORREGIDO: SECCIÓN ACTIVIDADES RESPONSIVE --- */
 
 * {
     box-sizing: border-box;
@@ -13,10 +13,10 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* Usamos dvh para mayor precisión en navegadores modernos */
     min-height: 100vh; 
     padding: 10px;
-    overflow: hidden; /* Evita scroll en el body */
+    overflow-x: hidden; /* Evita scrolls laterales raros */
+    overflow-y: hidden; /* Sin scroll por defecto para portátiles y proyector */
 }
 
 /* Animación principal */
@@ -29,15 +29,14 @@ body {
     background: white;
     width: 95%;
     max-width: 1150px;
-    /* Reducimos padding drásticamente para ganar espacio vertical */
     padding: 20px 40px; 
     border-radius: 25px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     animation: entradaFicha 0.8s ease-out forwards;
-    /* Altura máxima dinámica para que nunca genere scroll */
     max-height: 85vh; 
     display: flex;
     align-items: center;
+    margin-bottom: 30px; /* Margen de seguridad para el pie legal */
 }
 
 .grid-actividades {
@@ -59,17 +58,16 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 15px; /* Reducido de 25px */
+    margin-bottom: 15px;
 }
 
 .sol-icono {
-    width: 35px; /* Reducido de 45px */
+    width: 35px;
     height: auto;
 }
 
 .titulo-naranja {
     color: #f97316;
-    /* Fuente dinámica: se ajusta al ancho de pantalla */
     font-size: clamp(1.5rem, 2.5vw, 2.2rem); 
     font-weight: 700;
 }
@@ -78,18 +76,18 @@ body {
 .lista-actividades {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Reducido de 25px */
+    gap: 15px;
     margin-bottom: 15px;
 }
 
 .bloque-actividad {
     display: flex;
-    align-items: center; /* Mejor alineado al centro */
+    align-items: center;
     gap: 12px;
 }
 
 .icono-mini {
-    width: 40px; /* Reducido de 50px */
+    width: 40px;
     height: auto;
     flex-shrink: 0;
 }
@@ -108,7 +106,7 @@ body {
 }
 
 .img-decorativa-grande {
-    max-width: 300px; /* Reducido de 450px para no empujar el layout */
+    max-width: 300px;
     width: 100%;
     height: auto;
 }
@@ -122,7 +120,6 @@ body {
 
 .img-final-ajustada {
     width: 100%;
-    /* Muy importante: limita la altura de la imagen a la del contenedor */
     max-height: 65vh; 
     object-fit: contain;
 }
@@ -132,6 +129,7 @@ body {
     margin-top: 15px;
     display: flex;
     gap: 15px;
+    justify-content: center;
 }
 
 .btn-nav {
@@ -141,46 +139,79 @@ body {
     font-weight: 600;
     transition: 0.2s;
     font-size: 0.9rem;
+    text-align: center;
 }
 
 .btn-volver { background: #e5e7eb; color: #4b5563; }
 .btn-inicio { background: #d91a1d; color: white; }
 .btn-nav:hover { transform: scale(1.05); }
 
-/* --- RESPONSIVE --- */
-
-@media (max-width: 900px) {
-    .actividades-container {
-        max-height: none; 
-        padding: 20px;
-        margin: 20px 0;
-    }
-    .grid-actividades {
-        grid-template-columns: 1fr;
-    }
-    body {
-        overflow-y: auto; /* En móviles sí permitimos scroll */
-    }
-}
-
-/* Ajuste extremo para portátiles con pantallas muy pequeñas (bajas) */
-@media (max-height: 700px) {
-    .actividades-container { padding: 10px 30px; }
-    .img-decorativa-grande { max-width: 220px; }
-    .lista-actividades { gap: 8px; }
-    .titulo-naranja { font-size: 1.5rem; }
-}
+/* PIE DE PÁGINA LEGAL */
 .footer-legal-fixed {
-    position: fixed;
-    bottom: 0;
+    position: static; /* Cambiado a static para evitar solapamientos en móvil */
+    margin-top: auto;
     width: 100%;
     text-align: center;
     padding: 8px 0;
-    background: white;
-    border-top: 1px solid #f0f0f0;
+    background: transparent;
 }
 
 .footer-legal-fixed p { 
     font-size: 0.65rem; 
     color: #aaa; 
+}
+
+/* ==========================================================================
+   ADAPTACIÓN RESPONSIVE CONTROLADA PARA MÓVILES Y TABLETS
+   ========================================================================== */
+@media (max-width: 900px) {
+    body {
+        overflow-y: auto; /* Desbloqueamos el scroll vertical obligatorio en móvil */
+        height: auto;
+        padding: 15px 10px;
+    }
+
+    .actividades-container {
+        max-height: none; /* Quitamos la altura rígida para que crezca verticalmente */
+        padding: 25px 20px;
+        width: 100%;
+        border-radius: 20px;
+        margin: 10px 0;
+        align-items: flex-start;
+    }
+
+    /* El grid pasa a verse en formato vertical de una columna */
+    .grid-actividades {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .contenido-texto p {
+        font-size: 1.1rem !important; /* Forzamos tamaño de lectura cómodo */
+        line-height: 1.4;
+    }
+
+    .img-final-ajustada {
+        max-height: 280px; /* Limitamos el tamaño del árbol en pantallas verticales */
+        margin: 0 auto;
+    }
+
+    .controles-fijos {
+        width: 100%;
+        gap: 12px;
+    }
+
+    .btn-nav {
+        flex: 1; /* Los botones ocupan el mismo ancho en horizontal */
+        padding: 14px 10px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Ajuste para portátiles con pantallas muy bajas */
+@media (max-height: 700px) {
+    .actividades-container { padding: 10px 30px; }
+    .img-decorativa-grande { max-width: 220px; }
+    .lista-actividades { gap: 8px; }
+    .titulo-naranja { font-size: 1.5rem; }
 }
