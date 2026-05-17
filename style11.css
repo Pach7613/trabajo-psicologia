@@ -1,6 +1,10 @@
-/* --- CSS LECTURA POEMA: ADAPTABLE A PORTÁTIL Y MONITOR --- */
+/* --- CSS LECTURA POEMA: VERSIÓN 100% RESPONSIVE CON SCROLL --- */
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
 
 body {
     background-color: #fdf6ec;
@@ -9,44 +13,46 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh; /* Cambiado a min-height */
+    min-height: 100vh; 
     padding: 10px;
-    overflow: hidden;
+    overflow-x: hidden; /* Evita scrolls laterales rotos */
+    overflow-y: hidden; /* Sin scroll en monitores grandes/proyector de clase */
 }
 
 .contenedor-principal {
     background: white;
     width: 98%;
     max-width: 1400px;
-    /* Usamos una altura que se adapte al alto de la pantalla disponible */
-    height: 90vh; 
+    height: 90vh; /* Alto perfecto para pantallas grandes */
     border-radius: 25px;
     position: relative;
     display: flex;
     flex-direction: column;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     animation: entradaFicha 0.8s ease-out forwards;
+    margin-bottom: 30px; /* Colchón de seguridad para el pie legal fijo */
 }
 
-/* 1. CABECERA DUAL: BANNER MÁS FINO */
+/* --- CABECERA DUAL --- */
 .cabecera-dual {
     display: flex;
-    align-items: center; /* Alineado al centro para ahorrar altura */
-    padding: 15px 40px; /* Reducido */
+    align-items: center; 
+    padding: 15px 40px; 
     position: relative;
-    height: 80px; /* Altura controlada */
+    height: 80px; 
+    width: 100%;
 }
 
-.pildora-roja {                                                         
+.pildora-roja {                                                                 
     background-color: #e31e24;
     color: white;
-    padding: 8px 25px; /* Más estrecha */
+    padding: 8px 25px; 
     border-radius: 30px;
     font-weight: 600;
     font-size: 1rem;
     z-index: 2;
+    flex-shrink: 0;
 }
-
 
 .banner-naranja-curvo {
     background-color: #f48e28; 
@@ -59,27 +65,32 @@ body {
     display: flex; 
     align-items: center; 
     padding-left: 50px; 
+    padding-right: 20px;
     color: white;
 }
 
 .banner-naranja-curvo h1 {
     font-size: clamp(1.5rem, 3.5vh, 2.2rem);
     letter-spacing: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .icono-lectura {
     width: clamp(30px, 5vh, 45px);
     margin-right: 15px;
+    flex-shrink: 0;
 }
 
-/* 2. CUERPO: MODO RESPONSIVE */
+/* --- CUERPO CENTRAL (Escritorio / Proyector) --- */
 .contenido-lectura {
     display: flex;
     padding: 2vh 5vw;
     flex-grow: 1;
     gap: 5vw;
     align-items: center;
-    overflow-y: hidden; /* Evita el scroll interno si el contenido cabe */
+    overflow-y: hidden; 
 }
 
 .zona-poema { 
@@ -93,11 +104,12 @@ body {
     font-weight: 700; 
     font-size: clamp(1.1rem, 2.5vh, 1.4rem); 
     margin-bottom: 2vh; 
+    color: #000;
 }
 
 .poema {
     padding-left: 20px;
-    border-left: 3px solid #fdf6ec; /* Detalle decorativo */
+    border-left: 3px solid #fdf6ec; 
 }
 
 .titulo-poema {
@@ -114,7 +126,7 @@ body {
     color: #333;
 }
 
-/* 3. IMAGEN: TAMAÑO INTELIGENTE */
+/* Ilustración de la Luna */
 .zona-ilustracion {
     width: 55%;
     display: flex;
@@ -124,17 +136,17 @@ body {
 
 .img-luna {
     width: 100%; 
-    /* La imagen nunca será más alta que el 65% de la pantalla */
     max-height: 65vh; 
     object-fit: contain;
 }
 
-/* 4. BOTONES */
+/* --- CONTROLES DE NAVEGACIÓN --- */
 .controles { 
     display: flex; 
     justify-content: center;
     gap: 15px; 
     padding: 15px 0; 
+    width: 100%;
 }
 
 .btn-nav {
@@ -145,35 +157,147 @@ body {
     color: #4b5563; 
     font-weight: 600;
     font-size: 1rem;
+    text-align: center;
     transition: 0.3s;
 }
 
 .btn-rojo { background: #e31e24; color: white; }
 .btn-nav:hover { transform: scale(1.05); }
 
-/* --- ANIMACIONES Y RESPONSIVE --- */
-@keyframes entradaFicha {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Si la pantalla es muy bajita (como un portátil pequeño) */
-@media (max-height: 700px) {
-    .estrofa { margin-bottom: 1vh; }
-    .instruccion { margin-bottom: 1vh; }
-    .cabecera-dual { height: 60px; }
-}
+/* --- PIE DE PÁGINA LEGAL --- */
 .footer-legal-fixed {
-    position: fixed;
-    bottom: 0;
+    position: static; 
+    margin-top: auto;
     width: 100%;
     text-align: center;
     padding: 8px 0;
-    background: white;
-    border-top: 1px solid #f0f0f0;
+    background: transparent;
 }
 
 .footer-legal-fixed p { 
     font-size: 0.65rem; 
     color: #aaa; 
+}
+
+/* --- ANIMACIONES --- */
+@keyframes entradaFicha {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-height: 700px) {
+    .estrofa { margin-bottom: 1vh; }
+    .instruccion { margin-bottom: 1vh; }
+    .cabecera-dual { height: 60px; }
+}
+
+/* ==========================================================================
+   ADAPTACIÓN RESPONSIVE CRÍTICA PARA MÓVILES Y PANTALLAS COMPACTAS
+   ========================================================================== */
+@media (max-width: 900px) {
+    body {
+        overflow-y: auto !important; /* Desbloquea por completo el scroll en smartphones y tablets */
+        height: auto;
+        padding: 15px 5px;
+    }
+
+    .contenedor-principal {
+        height: auto !important; /* Rompe el límite estricto de 90vh para crecer verticalmente */
+        width: 100%;
+        border-radius: 15px;
+        overflow: visible; /* Permite que los botones bajen de forma natural */
+    }
+
+    /* Cabecera compacta móvil apilada */
+    .cabecera-dual {
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+        gap: 10px;
+        background-color: #f48e28; 
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    .pildora-roja {
+        font-size: 0.85rem;
+        padding: 5px 15px;
+        position: static;
+    }
+
+    .banner-naranja-curvo {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        background-color: transparent;
+    }
+
+    .banner-naranja-curvo h1 {
+        margin-left: 0;
+        font-size: 1.2rem;
+        white-space: normal; 
+    }
+
+    .icono-lectura {
+        display: none;
+    }
+
+    /* Transformación de layout horizontal a columna vertical limpia */
+    .contenido-lectura {
+        flex-direction: column;
+        padding: 25px 15px;
+        gap: 30px;
+        overflow-y: visible !important; /* Asegura que el contenedor de lectura se estire */
+    }
+
+    .zona-poema {
+        width: 100%;
+    }
+
+    .instruccion {
+        font-size: 1.15rem !important;
+        margin-bottom: 15px;
+    }
+
+    .poema {
+        padding-left: 15px;
+        border-left: 3px solid #f48e28; /* Borde naranja para contrastar sobre el fondo blanco */
+    }
+
+    .titulo-poema {
+        font-size: 1.3rem !important;
+        margin-bottom: 10px;
+    }
+
+    .estrofa {
+        font-size: 1.1rem !important;
+        line-height: 1.5;
+        margin-bottom: 15px;
+    }
+
+    /* Redimensionamiento adaptivo de la ilustración de la luna */
+    .zona-ilustracion {
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    .img-luna {
+        width: 75%; /* Evita que la imagen sea gigante en móviles */
+        max-height: 260px; /* Toque de altura máximo en pantallas táctiles */
+    }
+
+    /* Botones reajustados para que nunca queden cortados y bajen con el scroll */
+    .controles {
+        padding: 15px 15px 25px 15px;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .btn-nav {
+        flex: 1; /* Los botones ocupan el mismo espacio equilibrado en horizontal */
+        padding: 14px 10px;
+        font-size: 0.95rem;
+    }
 }

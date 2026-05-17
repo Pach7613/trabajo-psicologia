@@ -1,6 +1,10 @@
-/* --- CSS ACTIVIDADES: MISMO ESTILO QUE PÁGINA 11 --- */
+/* --- CSS ACTIVIDADES: RESPONSIVE Y SIN RECORTES (ESTILO PAG 11) --- */
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
 
 body {
     background-color: #fdf6ec;
@@ -11,7 +15,8 @@ body {
     justify-content: center;
     min-height: 100vh;
     padding: 10px;
-    overflow: hidden;
+    overflow-x: hidden; /* Evita desbordes horizontales */
+    overflow-y: hidden; /* Bloqueado en pantallas grandes por el proyector */
 }
 
 .contenedor-principal {
@@ -25,19 +30,21 @@ body {
     flex-direction: column;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     animation: entradaFicha 0.8s ease-out forwards;
+    margin-bottom: 30px; /* Separación de seguridad por el pie de página legal */
 }
 
-/* --- CABECERA (IDENTICA A PAG 11) --- */
+/* --- CABECERA --- */
 .cabecera-dual {
     display: flex;
     align-items: center;
     padding: 15px 40px;
     position: relative;
     height: 80px;
+    width: 100%;
     flex-shrink: 0;
 }
 
-.pildora-roja {                                         
+.pildora-roja {                                                         
     background-color: #e31e24;
     color: white;
     padding: 8px 25px;
@@ -45,6 +52,7 @@ body {
     font-weight: 600;
     font-size: 1rem;
     z-index: 2;
+    flex-shrink: 0;
 }
 
 .banner-naranja-curvo {
@@ -58,20 +66,24 @@ body {
     display: flex; 
     align-items: center; 
     padding-left: 50px; 
+    padding-right: 20px;
     color: white;
 }
 
 .banner-naranja-curvo h1 {
     font-size: clamp(1.5rem, 3.5vh, 2.2rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* --- CUERPO DE ACTIVIDADES --- */
+/* --- CUERPO DE ACTIVIDADES (Escritorio) --- */
 .contenido-actividades {
     display: flex;
     padding: 2vh 4vw;
     flex-grow: 1;
     gap: 3vw;
-    overflow-y: auto; /* Permite scroll si la pantalla es muy pequeña */
+    overflow-y: auto; 
 }
 
 /* Columna Izquierda */
@@ -82,6 +94,7 @@ body {
     font-size: clamp(1rem, 2.2vh, 1.2rem); 
     margin-bottom: 2vh; 
     line-height: 1.3;
+    color: #000;
 }
 
 .numero-rojo { color: #e31e24; font-size: 1.4rem; margin-right: 5px; }
@@ -100,6 +113,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .img-box img { max-height: 80%; }
@@ -132,7 +146,7 @@ body {
 .v-verde { background: #4db3a2; }
 .v-naranja { background: #e67e22; }
 
-/* --- COLUMNA DERECHA (VOCABULARIO) --- */
+/* Columna Derecha */
 .columna-vocabulario { 
     width: 45%; 
     display: flex; 
@@ -176,12 +190,13 @@ body {
     object-fit: contain;
 }
 
-/* --- BOTONES (IGUAL A PAG 11) --- */
+/* --- CONTROLES DE NAVEGACIÓN --- */
 .controles { 
     display: flex; 
     justify-content: center;
     gap: 15px; 
     padding: 15px 0;
+    width: 100%;
     flex-shrink: 0;
 }
 
@@ -192,27 +207,130 @@ body {
     background: #e5e7eb; 
     color: #4b5563; 
     font-weight: 600;
+    text-align: center;
     transition: 0.3s;
 }
 
 .btn-rojo { background: #e31e24; color: white; }
 .btn-nav:hover { transform: scale(1.05); }
 
-@keyframes entradaFicha {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+/* --- PIE DE PÁGINA LEGAL --- */
 .footer-legal-fixed {
-    position: fixed;
-    bottom: 0;
+    position: static; 
+    margin-top: auto;
     width: 100%;
     text-align: center;
     padding: 8px 0;
-    background: white;
-    border-top: 1px solid #f0f0f0;
+    background: transparent;
 }
 
 .footer-legal-fixed p { 
     font-size: 0.65rem; 
     color: #aaa; 
+}
+
+/* --- ANIMACIONES --- */
+@keyframes entradaFicha {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ==========================================================================
+   MODIFICACIÓN RESPONSIVE CRÍTICA: SCROLL DESBLOQUEADO Y UNA SOLA COLUMNA
+   ========================================================================== */
+@media (max-width: 900px) {
+    body {
+        overflow-y: auto !important; /* Desbloquea el desplazamiento del navegador en smartphones */
+        height: auto;
+        padding: 15px 5px;
+    }
+
+    .contenedor-principal {
+        height: auto !important; /* Rompe los 90vh rígidos para que baje fluidamente */
+        width: 100%;
+        border-radius: 15px;
+    }
+
+    /* Cabecera compacta móvil apilada */
+    .cabecera-dual {
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+        gap: 10px;
+        background-color: #f48e28; 
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    .pildora-roja {
+        font-size: 0.85rem;
+        padding: 5px 15px;
+    }
+
+    .banner-naranja-curvo {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        background-color: transparent;
+    }
+
+    .banner-naranja-curvo h1 {
+        margin-left: 0;
+        font-size: 1.2rem;
+        white-space: normal; 
+    }
+
+    /* Convertimos las columnas paralelas en un flujo vertical único */
+    .contenido-actividades {
+        flex-direction: column;
+        padding: 25px 15px;
+        gap: 35px;
+        overflow-y: visible !important;
+    }
+
+    .columna-ejercicios, .columna-vocabulario {
+        width: 100%; /* Ocupan todo el ancho del dispositivo móvil */
+    }
+
+    .instruccion {
+        font-size: 1.15rem !important;
+        margin-bottom: 15px;
+    }
+
+    /* Pautas de cuaderno cómodas para uso táctil */
+    .pauta-azul {
+        height: 40px;
+    }
+
+    /* Modificación de la rejilla de palabras para que no colapse */
+    .nube-palabras {
+        grid-template-columns: repeat(2, 1fr); /* Pasa de 4 columnas a 2 columnas muy limpias */
+        gap: 10px;
+    }
+
+    .palabra-nube {
+        font-size: 0.95rem; /* Letra un pelín más grande para facilitar la lectura */
+        padding: 10px 5px;
+    }
+
+    /* Ocultamos ilustraciones secundarias que saturan en móvil */
+    .img-decorativa {
+        display: none;
+    }
+
+    /* Controles de navegación siempre al fondo de la vista sin cortes */
+    .controles {
+        padding: 15px 15px 25px 15px;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .btn-nav {
+        flex: 1;
+        padding: 14px 10px;
+        font-size: 0.95rem;
+    }
 }
