@@ -10,7 +10,8 @@ body {
     justify-content: center;
     min-height: 100vh;
     padding: 10px;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden; /* Sin scroll en PC/Proyector */
 }
 
 .contenedor-principal {
@@ -122,16 +123,130 @@ body {
     .tag-mimica { padding: 8px 15px; }
 }
 .footer-legal-fixed {
-    position: fixed;
-    bottom: 0;
+    position: static;
+    margin-top: auto;
     width: 100%;
     text-align: center;
     padding: 8px 0;
-    background: white;
+    background: transparent;
     border-top: 1px solid #f0f0f0;
 }
 
 .footer-legal-fixed p { 
     font-size: 0.65rem; 
     color: #aaa; 
+}
+
+/* ==========================================================================
+   ADAPTACIÓN RESPONSIVE COMPLETA PARA MÓVILES Y TABLETS
+   ========================================================================== */
+@media (max-width: 900px) {
+    body {
+        overflow-y: auto;
+        height: auto;
+        padding: 15px 5px;
+    }
+
+    .contenedor-principal {
+        height: auto;
+        width: 100%;
+        border-radius: 15px;
+    }
+
+    .cabecera-dual {
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+        gap: 10px;
+        background-color: #f48e28;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    .pildora-roja {
+        font-size: 0.85rem;
+        padding: 5px 15px;
+        position: static;
+    }
+
+    .banner-naranja-curvo {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        background-color: transparent;
+    }
+
+    .banner-naranja-curvo h1 {
+        margin-left: 0;
+        font-size: 1.2rem;
+        white-space: normal;
+    }
+
+    .contenido-actividades {
+        flex-direction: column;
+        padding: 20px 15px;
+        gap: 25px;
+        overflow: visible;
+    }
+
+    .columna {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .grid-unir {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .fotos-unir {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .fotos-unir img {
+        width: calc(50% - 5px);
+        height: 80px;
+    }
+
+    .etiquetas-centro {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .tag-unir {
+        flex: 1;
+        min-width: 100px;
+    }
+
+    .pauta-azul {
+        height: 35px;
+    }
+
+    .controles {
+        padding: 10px 15px 20px 15px;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .btn-nav {
+        flex: 1;
+        padding: 14px 10px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .fotos-unir img {
+        width: 100%;
+    }
+
+    .tag-mimica {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
 }

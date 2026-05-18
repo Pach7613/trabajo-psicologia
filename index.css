@@ -1,31 +1,34 @@
-/* --- 1. RESETEO Y BASE --- */
+/* --- 1. RESETEO Y BASE ANTIBOMBAS --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Forzamos a que el navegador se ajuste a la pantalla de la clase sin scrolls */
+html, body {
+    height: 100vh !important;
+    max-height: 100vh !important;
+    overflow: hidden !important; 
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     background-color: #ffffff;
-    overflow-x: hidden; /* Evita scrolls laterales raros */
 }
 
-/* --- 2. CABECERA ROJA FLEXIBLE --- */
+/* --- 2. CABECERA ROJA (65% DEL ALTO DE LA PANTALLA) --- */
 .main-header {
     background-color: #d91a1d;
-    min-height: 70vh; 
+    height: 65vh; 
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between; /* Distribuye arriba logos y abajo el arco */
     color: white;
     z-index: 1;
-    padding-bottom: 0;
 }
 
 .top-logos {
@@ -33,18 +36,18 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 5%;
+    padding: 15px 5%;
     position: relative;
     z-index: 10;
 }
 
 .logo-santillana, .logo-school { 
-    height: 50px; 
+    height: clamp(35px, 4vh, 50px); 
     width: auto;
     object-fit: contain;
 }
 
-/* Selector de Idioma Corregido y Unificado */
+/* Selector de Idioma */
 .language-selector {
     position: relative;
     z-index: 1000;
@@ -58,7 +61,7 @@ body {
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.4);
     color: white;
-    padding: 8px 18px;
+    padding: 6px 15px;
     border-radius: 50px;
     cursor: pointer;
     font-weight: 600;
@@ -66,17 +69,8 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    font-size: 0.9rem;
     transition: all 0.3s ease;
-}
-
-#lang-btn:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-2px);
-}
-
-#lang-btn::before {
-    content: "🌐";
-    font-size: 1.1rem;
 }
 
 #lang-menu {
@@ -93,7 +87,6 @@ body {
     min-width: 150px;
     z-index: 1001;
     overflow: hidden;
-    animation: fadeInDown 0.3s ease;
 }
 
 .language-selector.open #lang-menu {
@@ -107,87 +100,80 @@ body {
     padding: 12px 20px;
     font-size: 0.9rem;
     font-weight: 500;
-    transition: background 0.2s;
 }
 
-#lang-menu li a:hover {
-    background: #f8f8f8;
-    color: #d91a1d;
-}
-
-/* Contenido de Texto */
+/* Contenido de Texto Centrado */
 .hero-content {
     text-align: center;
-    margin: 20px 0 auto 0; /* Empuja hacia abajo de los logos de forma fluida */
     padding: 0 20px;
-    z-index: 10;
+    margin-top: auto;
+    margin-bottom: auto; 
+    transform: translateY(-40px); /* Subido un poco más para dejar aire a la ilustración */
+    z-index: 2;
 }
 
 .subtitle {
-    font-size: 1.2rem;
+    font-size: clamp(0.9rem, 2.2vh, 1.2rem);
     font-weight: 400;
     opacity: 0.9;
 }
 
 .main-title {
-    font-size: clamp(2.2rem, 6vw, 4.5rem); /* Escalado perfecto en proyectores */
+    font-size: clamp(1.8rem, 5.5vh, 3.5rem); 
     font-weight: 700;
     line-height: 1.2;
-    margin: 10px 0;
+    margin: 5px 0;
 }
 
 .course-detail {
-    font-size: 1.1rem;
+    font-size: clamp(0.85rem, 2vh, 1.1rem);
     opacity: 0.8;
 }
 
-/* --- 3. ILUSTRACIÓN Y ARCO BLANCO --- */
+/* --- 3. CONTENEDOR DE LA ILUSTRACIÓN --- */
 .arc-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100%;
+    height: auto; 
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
-    margin-top: 40px; /* Separación de seguridad con el texto */
-}
-
-.kids-illustration {
-    position: relative;
-    z-index: 2; 
-    margin-bottom: -60px; /* Provoca que se metan dentro de la curva */
-}
-
-.kids-illustration img {
-    height: auto;
-    max-height: 250px; /* Límite para que no se coma la pantalla */
-    width: 100%;
-    max-width: 450px;
-    display: block;
-    object-fit: contain;
-}
-
-.white-arc {
-    width: 110%;
-    height: 100px;
-    background-color: white;
-    border-top-left-radius: 50% 100%;
-    border-top-right-radius: 50% 100%;
-    position: relative;
+    justify-content: flex-end;
     z-index: 5;
 }
 
-/* --- 4. ÁREA INFERIOR DINÁMICA --- */
+/* CORRECCIÓN: Colocamos la ilustración abajo del todo (bottom: 0) para que apoye en la línea blanca */
+.kids-illustration {
+    position: absolute;
+    bottom: 0; 
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 7; /* Subido por encima del fondo blanco para que no se corten los bordes inferiores */
+    display: flex;
+}
+
+.kids-illustration img {
+    height: clamp(170px, 22vh, 250px); /* Usamos vh para que el tamaño cambie proporcionalmente a la pantalla de clase */
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* --- 4. ZONA INFERIOR FIJA (35% DEL ALTO DE LA PANTALLA) --- */
 .content-area {
-    flex: 1;
+    height: 35vh; 
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 40px 5%;
-    gap: 30px;
+    justify-content: center; 
+    padding: 10px 5% 20px 5%;
+    gap: 15px;
     position: relative;
     background-color: white;
+    z-index: 6; 
 }
 
 .bottom-logos {
@@ -195,11 +181,10 @@ body {
     gap: 30px;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap; /* Si no caben en horizontal (móvil), bajan solos */
 }
 
 .bottom-logos img {
-    height: 45px;
+    height: clamp(30px, 4.5vh, 45px); 
     width: auto;
     object-fit: contain;
 }
@@ -208,10 +193,10 @@ body {
     background-color: #d91a1d;
     color: white;
     text-decoration: none;
-    padding: 14px 40px;
+    padding: 12px 45px;
     border-radius: 50px;
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: clamp(0.95rem, 2vh, 1.1rem);
     box-shadow: 0 4px 15px rgba(217, 26, 29, 0.3);
     transition: all 0.2s ease;
     display: inline-flex;
@@ -224,81 +209,167 @@ body {
     background-color: #b81417;
 }
 
-/* --- 5. ADAPTACIÓN TOTAL PARA MÓVILES (Media Query) --- */
-@media (max-width: 768px) {
+/* --- 5. ADAPTACIÓN PARA TABLETS (769px – 1200px) --- */
+@media (max-width: 1200px) {
+    html, body {
+        height: auto !important;
+        max-height: none !important;
+        overflow-y: auto !important;
+    }
+
     .main-header {
-        min-height: auto; /* Quitamos la restricción de altura rígida */
-    }
-
-    .top-logos {
-        flex-wrap: wrap; /* Permite organizar los logos */
-        gap: 15px;
-        justify-content: center;
-        padding: 15px;
-    }
-
-    .logo-santillana, .logo-school {
-        height: 40px; /* Logos ligeramente más pequeños */
-    }
-
-    .language-selector {
-        margin: 5px auto 0 auto; /* Centramos el botón en móvil */
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        right: auto;
-    }
-
-    #lang-menu {
-        top: 100%;
+        height: auto;
+        min-height: 55vh;
+        padding-bottom: 80px; /* espacio para la ilustración que sobresale */
     }
 
     .hero-content {
-        margin-top: 25px;
-    }
-
-    .main-title {
-        font-size: 2.2rem; /* Tamaño controlado para móvil */
-    }
-
-    .kids-illustration {
-        margin-bottom: -45px;
+        transform: translateY(-20px);
     }
 
     .kids-illustration img {
-        max-height: 180px; /* Reducción proporcional para pantallas verticales */
-        max-width: 320px;
-    }
-
-    .white-arc {
-        height: 60px; /* Curva más suave en móvil */
+        height: clamp(140px, 18vh, 210px);
     }
 
     .content-area {
-        padding: 25px 5% 80px 5%; /* Añadimos espacio abajo para el botón */
-        justify-content: flex-start;
+        height: auto;
+        min-height: 35vh;
+        padding: 15px 5% 30px 5%;
     }
 
     .bottom-logos {
         gap: 20px;
     }
-    
-    .bottom-logos img {
-        height: 35px;
-    }
 
-    .start-btn {
-        position: fixed; /* En móviles se queda estático abajo para mejor usabilidad */
-        bottom: 20px;
-        left: 5%;
-        right: 5%;
-        width: 90%;
-        z-index: 2000;
-        text-align: center;
+    .bottom-logos img {
+        height: clamp(28px, 3.5vh, 40px);
     }
 }
 
-@keyframes fadeInDown {
-    from { opacity: 0; transform: translate(-50%, -10px); }
-    to { opacity: 1; transform: translate(-50%, 0); }
+/* --- 6. ADAPTACIÓN PARA MÓVILES (≤ 768px) --- */
+@media (max-width: 768px) {
+    html, body {
+        height: auto !important;
+        max-height: none !important;
+        overflow-y: auto !important;
+    }
+
+    .main-header {
+        height: auto;
+        min-height: auto;
+        padding-bottom: 0;
+    }
+
+    .top-logos {
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+        padding: 15px;
+    }
+
+    .language-selector {
+        margin: 5px auto 0 auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* El menú desplegable puede salirse en móvil — lo ancla a la izquierda */
+    #lang-menu {
+        left: 0;
+        transform: none;
+    }
+
+    .hero-content {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        transform: none;
+        padding: 0 15px;
+    }
+
+    .main-title {
+        font-size: clamp(1.8rem, 8vw, 2.4rem);
+    }
+
+    .arc-container {
+        position: relative;
+        height: auto;
+        margin-top: 20px;
+    }
+
+    .kids-illustration {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        margin-bottom: -10px;
+        z-index: 1;
+    }
+
+    .kids-illustration img {
+        height: auto;
+        max-height: 200px;
+        max-width: 90%;
+    }
+
+    .white-arc {
+        display: none; /* El arco se oculta en móvil para evitar superposiciones */
+    }
+
+    .content-area {
+        height: auto;
+        min-height: auto;
+        padding: 20px 5% 100px 5%;
+        justify-content: flex-start;
+        gap: 20px;
+    }
+
+    .bottom-logos {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .bottom-logos img {
+        height: clamp(25px, 6vw, 38px);
+    }
+
+    .start-btn {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 360px;
+        text-align: center;
+        z-index: 2000;
+    }
+}
+
+/* --- 7. TELÉFONOS MUY PEQUEÑOS (≤ 480px) --- */
+@media (max-width: 480px) {
+    .top-logos {
+        padding: 12px 10px;
+        gap: 10px;
+    }
+
+    .logo-santillana, .logo-school {
+        height: clamp(28px, 7vw, 40px);
+    }
+
+    .main-title {
+        font-size: clamp(1.5rem, 9vw, 2rem);
+    }
+
+    .subtitle, .course-detail {
+        font-size: 0.85rem;
+    }
+
+    .bottom-logos {
+        gap: 10px;
+    }
+
+    .bottom-logos img {
+        height: clamp(22px, 5.5vw, 32px);
+    }
 }

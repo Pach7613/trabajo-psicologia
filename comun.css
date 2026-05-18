@@ -1,46 +1,72 @@
-@media (max-width: 1400px) {
-    /* Permitir que la página respire y saque scroll si hace falta */
+/* ==========================================================================
+   comun.css — Correcciones globales para index.html en pantallas medianas
+   Solo aplica a la página de portada (usa clases de index.css).
+   ========================================================================== */
+
+/* --- TABLETS Y PORTÁTILES PEQUEÑOS (769px – 1200px) --- */
+@media (max-width: 1200px) {
+    /* Garantizamos scroll si la pantalla es más estrecha que el diseño */
     body, html {
         overflow-y: auto !important;
         height: auto !important;
+        max-height: none !important;
     }
 
-    /* Evitar que el arco tape el texto en pantallas pequeñas */
-    .hero-content {
-        margin-top: 20px !important;
-        padding: 0 20px;
-    }
-
-    .main-title {
-        font-size: clamp(2rem, 6vw, 3rem) !important;
-    }
-
-    /* Bajamos el arco para que no se coma los títulos */
+    /* El arco decorativo puede solapar el texto en pantallas intermedias */
     .white-arc {
-        height: 50vh !important;
-        bottom: -20vh !important;
-    }
-    
-    .kids-illustration {
-        bottom: 10vh !important;
+        height: 45vh;
+        bottom: -15vh;
     }
 
-    /* Los logos de abajo suelen dar problemas, los hacemos más pequeños */
+    /* La ilustración la subimos un poco para que no tape logos inferiores */
+    .kids-illustration {
+        bottom: 5vh;
+    }
+
+    /* Logos inferiores: reducimos gap para que no se desborden */
     .bottom-logos {
-        gap: 20px !important;
-        padding: 20px !important;
+        gap: 15px;
     }
 
     .bottom-logos img {
-        height: 35px !important;
+        height: clamp(28px, 3.5vh, 40px);
+    }
+}
+
+/* --- MÓVILES (≤ 768px) --- */
+@media (max-width: 768px) {
+    /* El arco se oculta: en móvil el posicionamiento absoluto da problemas */
+    .white-arc {
+        display: none;
     }
 
-    /* El botón Entrar lo movemos para que no tape los logos */
+    /* La ilustración vuelve al flujo normal del documento */
+    .kids-illustration {
+        bottom: auto;
+        position: relative;
+    }
+
+    /* El botón de entrar es fijo en la parte inferior, no flotante */
     .start-btn {
-        position: relative !important;
+        position: fixed !important;
+        bottom: 20px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
         right: auto !important;
-        bottom: auto !important;
-        display: inline-block;
-        margin: 20px 0;
+        width: 90%;
+        max-width: 360px;
+        text-align: center;
+        margin: 0;
+    }
+
+    /* Logos inferiores más pequeños */
+    .bottom-logos {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .bottom-logos img {
+        height: clamp(22px, 5.5vw, 32px);
     }
 }
