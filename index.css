@@ -320,8 +320,11 @@ body {
         max-width: 320px;
     }
 
+    /* El arco blanco se mantiene visible para cubrir los pies de los niños */
     .white-arc {
-        height: 60px;
+        display: block !important;
+        height: 55px !important;
+        z-index: 5 !important;
     }
 
     .content-area {
@@ -336,6 +339,12 @@ body {
 
     .bottom-logos img {
         height: 32px;
+    }
+
+    /* El área blanca queda POR ENCIMA de la ilustración */
+    .content-area {
+        position: relative !important;
+        z-index: 3 !important;
     }
 
     /* Botón fijo en la parte inferior para fácil acceso con el dedo */
