@@ -1,4 +1,4 @@
-/* --- CSS ACTIVIDADES: MISMO ESTILO QUE PÁGINA 11 --- */
+﻿/* --- CSS ACTIVIDADES: MISMO ESTILO QUE PÁGINA 11 --- */
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -312,5 +312,15 @@ body {
 
     .instruccion {
         font-size: 1rem !important;
+    }
+}
+
+
+/* ==========================================================================
+   PANTALLA DE CLASE 4K (3840 x 2160) — Escala automática al 75%
+   ========================================================================== */
+@media (min-width: 2560px) {
+    html {
+        zoom: 0.75;
     }
 }

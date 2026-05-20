@@ -35,15 +35,24 @@
 
 /* --- MÓVILES (≤ 768px) --- */
 @media (max-width: 768px) {
-    /* El arco se oculta: en móvil el posicionamiento absoluto da problemas */
+    /* El arco blanco se mantiene pequeño para cubrir los pies de los niños */
     .white-arc {
-        display: none;
+        display: block;
+        height: 55px;
+        z-index: 5;
     }
 
     /* La ilustración vuelve al flujo normal del documento */
     .kids-illustration {
         bottom: auto;
         position: relative;
+    }
+
+    /* El área blanca tiene z-index superior al header (z-index:1)
+       para que los niños queden POR DETRÁS del fondo blanco */
+    .content-area {
+        position: relative;
+        z-index: 3;
     }
 
     /* El botón de entrar es fijo en la parte inferior, no flotante */
@@ -68,5 +77,16 @@
 
     .bottom-logos img {
         height: clamp(22px, 5.5vw, 32px);
+    }
+}
+
+/* ==========================================================================
+   PANTALLA DE CLASE 4K (3840 x 2160) — Escala automática al 75%
+   Se activa cuando el proyector reporta ≥ 2560px de ancho CSS
+   (resolución física 3840px con DPR = 1, que es lo habitual en proyectores)
+   ========================================================================== */
+@media (min-width: 2560px) {
+    html {
+        zoom: 0.75;
     }
 }

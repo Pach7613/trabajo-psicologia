@@ -312,7 +312,7 @@ body {
     }
 
     .kids-illustration {
-        margin-bottom: -45px;
+        margin-bottom: -40px;
     }
 
     .kids-illustration img {
@@ -377,7 +377,7 @@ body {
     }
 
     .kids-illustration {
-        margin-bottom: -35px;
+        margin-bottom: -30px;
     }
 
     .white-arc {
@@ -397,4 +397,13 @@ body {
 @keyframes fadeInDown {
     from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
     to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ==========================================================================
+   PANTALLA DE CLASE 4K (3840 x 2160) — Escala automatica al 75%
+   ========================================================================== */
+@media (min-width: 2560px) {
+    html {
+        zoom: 0.75;
+    }
 }
